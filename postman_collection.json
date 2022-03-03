@@ -1626,12 +1626,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/user/6220e4c67c45c63dc43cdb30",
+							"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
 							"host": [
 								"{{DOMAIN_BASE_URL}}"
 							],
 							"path": [
-								"user",
+								"users",
 								"6220e4c67c45c63dc43cdb30"
 							]
 						}
@@ -1643,12 +1643,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/user/6220e4c67c45c63dc43cdb30",
+									"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
 									"host": [
 										"{{DOMAIN_BASE_URL}}"
 									],
 									"path": [
-										"user",
+										"users",
 										"6220e4c67c45c63dc43cdb30"
 									]
 								}
@@ -1755,12 +1755,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/user/6220e4c67c45c63dc43cdb32",
+									"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb32",
 									"host": [
 										"{{DOMAIN_BASE_URL}}"
 									],
 									"path": [
-										"user",
+										"users",
 										"6220e4c67c45c63dc43cdb32"
 									]
 								}
@@ -1874,12 +1874,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/user/",
+							"raw": "{{DOMAIN_BASE_URL}}/users/",
 							"host": [
 								"{{DOMAIN_BASE_URL}}"
 							],
 							"path": [
-								"user",
+								"users",
 								""
 							]
 						}
@@ -1900,12 +1900,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/user/",
+									"raw": "{{DOMAIN_BASE_URL}}/users/",
 									"host": [
 										"{{DOMAIN_BASE_URL}}"
 									],
 									"path": [
-										"user",
+										"users",
 										""
 									]
 								}
@@ -2023,12 +2023,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/user/6220e4c67c45c63dc43cdb30",
+							"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
 							"host": [
 								"{{DOMAIN_BASE_URL}}"
 							],
 							"path": [
-								"user",
+								"users",
 								"6220e4c67c45c63dc43cdb30"
 							]
 						}
@@ -2049,12 +2049,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/user/6220e4c67c45c63dc43cdb30",
+									"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
 									"host": [
 										"{{DOMAIN_BASE_URL}}"
 									],
 									"path": [
-										"user",
+										"users",
 										"6220e4c67c45c63dc43cdb30"
 									]
 								}
@@ -2159,12 +2159,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/user/6220e4c67c45c63dc43cdb30",
+							"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
 							"host": [
 								"{{DOMAIN_BASE_URL}}"
 							],
 							"path": [
-								"user",
+								"users",
 								"6220e4c67c45c63dc43cdb30"
 							]
 						}
@@ -2176,12 +2176,12 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/user/6220e4c67c45c63dc43cdb30",
+									"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
 									"host": [
 										"{{DOMAIN_BASE_URL}}"
 									],
 									"path": [
-										"user",
+										"users",
 										"6220e4c67c45c63dc43cdb30"
 									]
 								}
