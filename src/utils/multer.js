@@ -1,5 +1,5 @@
 const multer = require("multer");
-const shortid = require("shortid");
+const { nanoid } = require("nanoid");
 const CustomError = require("./custom-error");
 
 const storage = multer.diskStorage({
@@ -8,9 +8,9 @@ const storage = multer.diskStorage({
         cb(null, "uploads");
     },
     filename: (req, file, cb) => {
-        // Generate unique filename form current date and shortid
+        // Generate unique filename form current date and nanoid
         const fileExt = file.originalname.split(".").pop();
-        let filename = `${shortid.generate()}_${new Date().getTime()}.${fileExt}`;
+        const filename = `${nanoid()}_${new Date().getTime()}.${fileExt}`;
 
         cb(null, filename);
     }

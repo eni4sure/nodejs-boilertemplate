@@ -16,7 +16,7 @@ function response(message, data, success) {
 function formatMesaage(str) {
     if (!str) return "";
 
-    // Make first letter capitial
+    // Make first letter capital
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 

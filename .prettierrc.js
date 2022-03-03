@@ -8,5 +8,6 @@ module.exports = {
     semi: true,
     useTabs: false,
     singleQuote: false,
-    bracketSpacing: true
+    bracketSpacing: true,
+    printWidth: 200
 };

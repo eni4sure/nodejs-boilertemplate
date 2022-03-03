@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const { BCRYPT_SALT } = require("./../config");
 
@@ -6,34 +6,38 @@ const userSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            trim: true,
-            required: [true, "Name is required"]
+            required: true,
+            trim: true
         },
         email: {
             type: String,
-            trim: true,
+            required: true,
             unique: true,
-            required: [true, "Email is required"]
+            trim: true
         },
         password: {
             type: String,
-            required: [true, "Password is required"]
+            required: true
         },
         image: {
-            type: String
+            type: String,
+            required: false
         },
         role: {
             type: String,
+            required: true,
             trim: true,
             enum: ["user", "admin"],
             default: "user"
         },
         isActive: {
             type: Boolean,
+            required: true,
             default: true
         },
         isVerified: {
             type: Boolean,
+            required: true,
             default: false
         }
     },

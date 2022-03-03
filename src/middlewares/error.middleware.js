@@ -1,14 +1,7 @@
 const response = require("./../utils/response");
 
 // Possible error names
-const errorNames = [
-    "CastError",
-    "JsonWebTokenError",
-    "ValidationError",
-    "SyntaxError",
-    "MongooseError",
-    "MongoError"
-];
+const errorNames = ["CastError", "JsonWebTokenError", "ValidationError", "SyntaxError", "MongooseError", "MongoError"];
 
 module.exports = (app) => {
     app.use("*", (req, res) => {
@@ -21,9 +14,7 @@ module.exports = (app) => {
         } else if (error.name == "MongoError" && error.code == 11000) {
             // Catch duplicate key field error
             const field = Object.entries(error.keyValue)[0][0];
-            res.status(400).send(
-                response(`${field} already exists`, null, false)
-            );
+            res.status(400).send(response(`${field} already exists`, null, false));
         } else if (errorNames.includes(error.name)) {
             res.status(400).send(response(error.message, null, false));
         } else {

@@ -4,9 +4,7 @@ const AuthService = require("../services/auth.service");
 class AuthContoller {
     async register(req, res) {
         const result = await AuthService.register(req.body);
-        res.status(201).send(
-            response("new user registered successfully", result)
-        );
+        res.status(201).send(response("new user registered successfully", result));
     }
 
     async login(req, res) {
@@ -35,10 +33,7 @@ class AuthContoller {
     }
 
     async updatePassword(req, res) {
-        const result = await AuthService.updatePassword(
-            req.params.userId,
-            req.body
-        );
+        const result = await AuthService.updatePassword(req.params.userId, req.body);
         res.status(200).send(response("password updated", result));
     }
 }

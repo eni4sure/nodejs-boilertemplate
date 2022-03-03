@@ -11,8 +11,7 @@ class MailService {
         from = from || `${APP_NAME} <no-reply${mailer.DOMAIN}>`;
         content = content || " ";
 
-        if (!recipient || recipient.length < 1)
-            throw new CustomError("Recipient is required");
+        if (!recipient || recipient.length < 1) throw new CustomError("Recipient is required");
         if (!subject) throw new CustomError("Subject is required");
 
         // Define nodemailer transporter

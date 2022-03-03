@@ -11,21 +11,14 @@ class UserService {
     }
 
     async getOne(userId) {
-        const user = await User.findOne(
-            { _id: userId },
-            { password: 0, __v: 0 }
-        );
+        const user = await User.findOne({ _id: userId }, { password: 0, __v: 0 });
         if (!user) throw new CustomError("User does not exist");
 
         return user;
     }
 
     async update(userId, data) {
-        const user = await User.findByIdAndUpdate(
-            { _id: userId },
-            { $set: data },
-            { new: true }
-        );
+        const user = await User.findByIdAndUpdate({ _id: userId }, { $set: data }, { new: true });
 
         if (!user) throw new CustomError("User dosen't exist", 404);
 

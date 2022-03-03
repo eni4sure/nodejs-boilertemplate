@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const JWT = require("jsonwebtoken");
 
@@ -9,7 +9,6 @@ const MailService = require("./../services/mail.service");
 const { JWT_SECRET, BCRYPT_SALT, url } = require("./../config");
 
 class AuthService {
-
     async register(data) {
         let user = await User.findOne({ email: data.email });
         if (user) throw new CustomError("Email already exists");
@@ -42,11 +41,7 @@ class AuthService {
         const isCorrect = await bcrypt.compare(data.password, user.password);
         if (!isCorrect) throw new CustomError("Incorrect email or password");
 
-        const token = await JWT.sign(
-            { id: user._id, role: user.role },
-            JWT_SECRET,
-            { expiresIn: 60 * 60 }
-        );
+        const token = await JWT.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: 60 * 60 });
 
         return (data = {
             uid: user._id,
@@ -65,18 +60,12 @@ class AuthService {
         if (user.isVerified) throw new CustomError("Email is already verified");
 
         const VToken = await Token.findOne({ userId });
-        if (!VToken)
-            throw new CustomError("Invalid or expired password reset token");
+        if (!VToken) throw new CustomError("Invalid or expired password reset token");
 
         const isValid = await bcrypt.compare(verifyToken, VToken.token);
-        if (!isValid)
-            throw new CustomError("Invalid or expired password reset token");
+        if (!isValid) throw new CustomError("Invalid or expired password reset token");
 
-        await User.updateOne(
-            { _id: userId },
-            { $set: { isVerified: true } },
-            { new: true }
-        );
+        await User.updateOne({ _id: userId }, { $set: { isVerified: true } }, { new: true });
 
         await VToken.deleteOne();
 
@@ -136,20 +125,14 @@ class AuthService {
         const { userId, resetToken, password } = data;
 
         const RToken = await Token.findOne({ userId });
-        if (!RToken)
-            throw new CustomError("Invalid or expired password reset token");
+        if (!RToken) throw new CustomError("Invalid or expired password reset token");
 
         const isValid = await bcrypt.compare(resetToken, RToken.token);
-        if (!isValid)
-            throw new CustomError("Invalid or expired password reset token");
+        if (!isValid) throw new CustomError("Invalid or expired password reset token");
 
         const hash = await bcrypt.hash(password, BCRYPT_SALT);
 
-        await User.updateOne(
-            { _id: userId },
-            { $set: { password: hash } },
-            { new: true }
-        );
+        await User.updateOne({ _id: userId }, { $set: { password: hash } }, { new: true });
 
         await RToken.deleteOne();
 
@@ -164,13 +147,9 @@ class AuthService {
         const isCorrect = await bcrypt.compare(data.password, user.password);
         if (!isCorrect) throw new CustomError("Incorrect password");
 
-        const hash = await bcrypt.hash(password, BCRYPT_SALT);
+        const hash = await bcrypt.hash(data.password, BCRYPT_SALT);
 
-        await User.updateOne(
-            { _id: userId },
-            { $set: { password: hash } },
-            { new: true }
-        );
+        await User.updateOne({ _id: userId }, { $set: { password: hash } }, { new: true });
 
         return;
     }

@@ -23,13 +23,13 @@ module.exports = (app) => {
     // Tell express to recognize the incoming Request Object as a JSON Object
     app.use(express.json());
 
-    // app.use(express.static("/public"));
+    // app.use(express.static(path.join(__dirname, "..", "..", "public")));
 
     // Express body parser
     app.use(express.urlencoded({ extended: true }));
 
-    // Serve Uploads
-    app.use("/uploads", express.static("/uploads"));
+    // Server Uploads
+    app.use("/uploads", express.static(path.join(__dirname, "..", "..", "uploads")));
 
     return app;
 };
