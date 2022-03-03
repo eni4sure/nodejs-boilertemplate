@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 4000;
 // Listen to server port
 app.listen(PORT, async () => {
     // Initialize MongoDB connection
-    require("./database");
+    require("./database/mongo");
 
     console.log(`:::> Server listening on port ${PORT} @ http://localhost:${PORT}`);
 });
