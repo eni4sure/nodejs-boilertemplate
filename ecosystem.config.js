@@ -5,7 +5,8 @@ module.exports = {
             script: "src/index.js",
             exec_mode: "cluster",
             instances: 0,
-            watch: "."
+            watch: ".",
+            ignore_watch: ["node_modules"]
         }
     ],
 
