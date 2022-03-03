@@ -11,7 +11,7 @@ const { JWT_SECRET, BCRYPT_SALT, url } = require("./../config");
 class AuthService {
     async register(data) {
         let user = await User.findOne({ email: data.email });
-        if (user) throw new CustomError("Email already exists");
+        if (user) throw new CustomError("email already exists");
 
         user = new User(data);
         const token = JWT.sign({ id: user._id, role: user.role }, JWT_SECRET);
@@ -30,16 +30,16 @@ class AuthService {
     }
 
     async login(data) {
-        if (!data.email) throw new CustomError("Email is required");
-        if (!data.password) throw new CustomError("Password is required");
+        if (!data.email) throw new CustomError("email is required");
+        if (!data.password) throw new CustomError("password is required");
 
         // Check if user exist
         const user = await User.findOne({ email: data.email });
-        if (!user) throw new CustomError("Incorrect email or password");
+        if (!user) throw new CustomError("incorrect email or password");
 
         //Check if user password is correct
         const isCorrect = await bcrypt.compare(data.password, user.password);
-        if (!isCorrect) throw new CustomError("Incorrect email or password");
+        if (!isCorrect) throw new CustomError("incorrect email or password");
 
         const token = await JWT.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: 60 * 60 });
 
@@ -57,13 +57,13 @@ class AuthService {
 
         const user = await User.findOne({ _id: userId });
         if (!user) throw new CustomError("User does not exist");
-        if (user.isVerified) throw new CustomError("Email is already verified");
+        if (user.isVerified) throw new CustomError("email is already verified");
 
         const VToken = await Token.findOne({ userId });
-        if (!VToken) throw new CustomError("Invalid or expired password reset token");
+        if (!VToken) throw new CustomError("invalid or expired password reset token");
 
         const isValid = await bcrypt.compare(verifyToken, VToken.token);
-        if (!isValid) throw new CustomError("Invalid or expired password reset token");
+        if (!isValid) throw new CustomError("invalid or expired password reset token");
 
         await User.updateOne({ _id: userId }, { $set: { isVerified: true } }, { new: true });
 
@@ -74,8 +74,8 @@ class AuthService {
 
     async requestEmailVerification(email) {
         const user = await User.findOne({ email });
-        if (!user) throw new CustomError("Email does not exist");
-        if (user.isVerified) throw new CustomError("Email is already verified");
+        if (!user) throw new CustomError("email does not exist");
+        if (user.isVerified) throw new CustomError("email is already verified");
 
         const token = await Token.findOne({ userId: user._id });
         if (token) await token.deleteOne();
@@ -99,7 +99,7 @@ class AuthService {
 
     async requestPasswordReset(email) {
         const user = await User.findOne({ email });
-        if (!user) throw new CustomError("Email does not exist");
+        if (!user) throw new CustomError("email does not exist");
 
         const token = await Token.findOne({ userId: user._id });
         if (token) await token.deleteOne();
@@ -125,10 +125,10 @@ class AuthService {
         const { userId, resetToken, password } = data;
 
         const RToken = await Token.findOne({ userId });
-        if (!RToken) throw new CustomError("Invalid or expired password reset token");
+        if (!RToken) throw new CustomError("invalid or expired password reset token");
 
         const isValid = await bcrypt.compare(resetToken, RToken.token);
-        if (!isValid) throw new CustomError("Invalid or expired password reset token");
+        if (!isValid) throw new CustomError("invalid or expired password reset token");
 
         const hash = await bcrypt.hash(password, BCRYPT_SALT);
 
@@ -145,7 +145,7 @@ class AuthService {
 
         //Check if user password is correct
         const isCorrect = await bcrypt.compare(data.password, user.password);
-        if (!isCorrect) throw new CustomError("Incorrect password");
+        if (!isCorrect) throw new CustomError("incorrect password");
 
         const hash = await bcrypt.hash(data.password, BCRYPT_SALT);
 

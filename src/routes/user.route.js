@@ -6,7 +6,7 @@ const UserCtrl = require("./../controllers/user.controller");
 
 router.post("/", auth(role.ADMIN), upload("image"), UserCtrl.create);
 
-router.get("/", auth(role.USER), UserCtrl.getAll);
+router.get("/", auth(role.ADMIN), UserCtrl.getAll);
 
 router.get("/:userId", auth(role.USER), UserCtrl.getOne);
 
