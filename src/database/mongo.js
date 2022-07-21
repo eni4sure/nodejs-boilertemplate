@@ -7,6 +7,7 @@ mongoose.connect(
         useNewUrlParser: true,
         useUnifiedTopology: true
     },
+    // eslint-disable-next-line no-unused-vars
     (err, data) => {
         if (err) {
             console.error("<::: Couldn't connect to database", err);

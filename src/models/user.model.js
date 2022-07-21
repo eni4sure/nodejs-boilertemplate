@@ -30,19 +30,19 @@ const userSchema = new mongoose.Schema(
             enum: ["user", "admin"],
             default: "user"
         },
-        isActive: {
+        is_active: {
             type: Boolean,
             required: true,
             default: true
         },
-        isVerified: {
+        is_verified: {
             type: Boolean,
             required: true,
             default: false
         }
     },
     {
-        timestamps: true
+        timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
     }
 );
 

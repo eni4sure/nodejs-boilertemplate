@@ -1,2351 +1,2195 @@
 {
-	"info": {
-		"name": "node-express-starter",
-		"description": "This is node-express-starter powered by Nodejs Express",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Authentication",
-			"item": [
-				{
-					"name": "Create an Account",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Eniola Osabiya\",\n    \"email\": \"eosabiya@gmail.com\",\n    \"password\": \"password\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/auth/register",
-							"host": [
-								"{{DOMAIN_BASE_URL}}"
-							],
-							"path": [
-								"auth",
-								"register"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Create an Account",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Eniola Osabiya\",\n    \"email\": \"eosabiya@gmail.com\",\n    \"password\": \"password\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/register",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"register"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "341"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"155-yBIxqu/azvOfP1kNJHFUFf8qeEk\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 18:51:12 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"New user registered successfully\",\n    \"data\": {\n        \"uid\": \"61a9159d8222c396b2e3bc90\",\n        \"email\": \"eosabiya@gmail.com\",\n        \"role\": \"user\",\n        \"verified\": false,\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTkxNTlkODIyMmMzOTZiMmUzYmM5MCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjM4NDcxMDY5fQ.5Sfy0WB5ylQkwMrJYoUBuas9eiNHDgrxyc4NjMKQUgs\"\n    },\n    \"success\": true\n}"
-						},
-						{
-							"name": "Create an Account",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Eniola Osabiya\",\n    \"email\": \"eosabiya@gmail.com\",\n    \"password\": \"password\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/register",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"register"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "62"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"3e-4sD5NK+9x77c3i/AGkIc+6GQ3G4\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 18:52:24 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Email already exists\",\n    \"data\": null,\n    \"success\": false\n}"
-						}
-					]
-				},
-				{
-					"name": "Login to account",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"eosabiya@gmail.com\",\n    \"password\": \"password\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/auth/login",
-							"host": [
-								"{{DOMAIN_BASE_URL}}"
-							],
-							"path": [
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Login to account",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"eosabiya@gmail.com\",\n    \"password\": \"password\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/login",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "352"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"160-bdI5yf3pRvBz6PVvviZqQd536PY\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 18:57:40 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"User login successful\",\n    \"data\": {\n        \"uid\": \"61a9159d8222c396b2e3bc90\",\n        \"email\": \"eosabiya@gmail.com\",\n        \"role\": \"user\",\n        \"verified\": false,\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTkxNTlkODIyMmMzOTZiMmUzYmM5MCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjM4NDcxNDYwLCJleHAiOjE2Mzg0NzUwNjB9.EP1-Rn6WYrhFhuVeOy1g5UlCZjF3ftm4pk4I-7TgbyA\"\n    },\n    \"success\": true\n}"
-						},
-						{
-							"name": "Login to account",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"eosabiya@gmail.co\",\n    \"password\": \"password\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/login",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "69"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"45-iG1TRpsyL5eDmHDls2/Vxm3lRpg\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 18:58:10 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Incorrect email or password\",\n    \"data\": null,\n    \"success\": false\n}"
-						}
-					]
-				},
-				{
-					"name": "Verify Email",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"userId\": \"61a9159d8222c396b2e3bc90\",\n    \"verifyToken\": \"7113bb81c3aa1c8d52adba342b0dc5d06601a54cc5bb88bd91b7aa5c32ecf9f4\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/auth/verify-email",
-							"host": [
-								"{{DOMAIN_BASE_URL}}"
-							],
-							"path": [
-								"auth",
-								"verify-email"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Verify Email",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"userId\": \"61a922af5b8c34ab50bfce90\",\n    \"verifyToken\": \"dd4ff6d1e14daeaf5b87bfa259f1c656db7df75a6db8eec3252c741091cda74d\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/verify-email",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"verify-email"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "68"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"44-C/JulxJZyE+y4goh1qB1Vk7njvk\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 19:47:30 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Email verified successfully\",\n    \"data\": null,\n    \"success\": true\n}"
-						},
-						{
-							"name": "Verify Email",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"userId\": \"61a9159d8222c396b2e3bc90\",\n    \"verifyToken\": \"7113bb81c3aa1c8d52adba342b0dc5d06601a54cc5bb88bd91b7aa5c32ecf9f4\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/verify-email",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"verify-email"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "81"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"51-HjXftyxOamYxG3ULr+ymCKOVGoY\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 19:44:36 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Invalid or expired password reset token\",\n    \"data\": null,\n    \"success\": false\n}"
-						}
-					]
-				},
-				{
-					"name": "Request Email Verification",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"eosabiya@gmail.com\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/auth/request-email-verification",
-							"host": [
-								"{{DOMAIN_BASE_URL}}"
-							],
-							"path": [
-								"auth",
-								"request-email-verification"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Request Email Verification",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"eosabiya@gmail.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/request-email-verification",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"request-email-verification"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "68"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"44-irqAxkhM1ArE+y7+Sot3ICZAw68\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 19:58:02 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Email verfication link sent\",\n    \"data\": null,\n    \"success\": true\n}"
-						},
-						{
-							"name": "Request Email Verification",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"eosabiya@gmail+1.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/request-email-verification",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"request-email-verification"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "67"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"43-XCiNCdsCIfcNPUPB5r5nuVVSr1U\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 20:03:40 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Email is already verified\",\n    \"data\": null,\n    \"success\": false\n}"
-						},
-						{
-							"name": "Request Email Verification",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"eosabiya+0@gmail.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/request-email-verification",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"request-email-verification"
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "62"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"3e-+KKcNCmxs+ssr5QknpYOH6JbgzA\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 20:02:53 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Email does not exist\",\n    \"data\": null,\n    \"success\": false\n}"
-						}
-					]
-				},
-				{
-					"name": "Request password reset",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"eosabiya@gmail.com\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/auth/request-password-reset",
-							"host": [
-								"{{DOMAIN_BASE_URL}}"
-							],
-							"path": [
-								"auth",
-								"request-password-reset"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Request password reset",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"eosabiya@gmail.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/request-password-reset",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"request-password-reset"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "65"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"41-hLiBmvlVf8rCFmoQ8KTjrWwEftM\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 20:06:44 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Password reset link sent\",\n    \"data\": null,\n    \"success\": true\n}"
-						},
-						{
-							"name": "Request password reset",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"eosabiya+@gmail.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/request-password-reset",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"request-password-reset"
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "62"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"3e-+KKcNCmxs+ssr5QknpYOH6JbgzA\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 20:07:36 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Email does not exist\",\n    \"data\": null,\n    \"success\": false\n}"
-						}
-					]
-				},
-				{
-					"name": "Reset Password",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"userId\": \"61a9159d8222c396b2e3bc90\",\n    \"password\": \"newpassword\",\n    \"resetToken\": \"b8f098aea7ad797b295f9b0a23778e04d95cf927f76786817e166ea109ddaa00\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/auth/reset-password",
-							"host": [
-								"{{DOMAIN_BASE_URL}}"
-							],
-							"path": [
-								"auth",
-								"reset-password"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Reset Password",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"userId\": \"61a9159d8222c396b2e3bc90\",\n    \"password\": \"newpassword\",\n    \"resetToken\": \"b8f098aea7ad797b295f9b0a23778e04d95cf927f76786817e166ea109ddaa00\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/reset-password",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"reset-password"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "57"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"39-13E8eUL2fqYBFuwxerex5m7Jwv4\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 20:12:45 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Password updated\",\n    \"data\": null,\n    \"success\": true\n}"
-						},
-						{
-							"name": "Reset Password",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"userId\": \"61a9159d8222c396b2e3bc90\",\n    \"password\": \"newpassword\",\n    \"resetToken\": \"b8f098aea7ad797b295f9b0a23778e04d95cf927f76786817e166ea109ddaa00\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/auth/reset-password",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"auth",
-										"reset-password"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "81"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"51-HjXftyxOamYxG3ULr+ymCKOVGoY\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 02 Dec 2021 20:13:14 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Invalid or expired password reset token\",\n    \"data\": null,\n    \"success\": false\n}"
-						}
-					]
-				}
-			],
-			"description": "This section contains all the authentication routes for node-express-starter"
-		},
-		{
-			"name": "Users",
-			"item": [
-				{
-					"name": "Get all Users - ADMIN",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/user",
-							"host": [
-								"{{DOMAIN_BASE_URL}}"
-							],
-							"path": [
-								"user"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Get all Users",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/user",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"user"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "Cross-Origin-Embedder-Policy",
-									"value": "require-corp"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Resource-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Origin-Agent-Cluster",
-									"value": "?1"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "262"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"106-anT3zggowFGPj7D0O7FastSJrus\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 03 Mar 2022 15:59:36 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"All users\",\n    \"data\": [\n        {\n            \"_id\": \"6220e4c67c45c63dc43cdb30\",\n            \"name\": \"Eniola Osabiya\",\n            \"email\": \"eosabiya@gmail.com\",\n            \"role\": \"admin\",\n            \"isActive\": true,\n            \"isVerified\": true,\n            \"createdAt\": \"2022-03-03T15:54:46.076Z\",\n            \"updatedAt\": \"2022-03-03T15:54:46.076Z\"\n        }\n    ],\n    \"success\": true\n}"
-						}
-					]
-				},
-				{
-					"name": "Get One User",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
-							"host": [
-								"{{DOMAIN_BASE_URL}}"
-							],
-							"path": [
-								"users",
-								"6220e4c67c45c63dc43cdb30"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Get One User",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"users",
-										"6220e4c67c45c63dc43cdb30"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "Cross-Origin-Embedder-Policy",
-									"value": "require-corp"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Resource-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Origin-Agent-Cluster",
-									"value": "?1"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "260"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"104-9fF4jala4hA7DOLZbhSZNR5GmGM\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 03 Mar 2022 16:02:30 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [
-								{
-									"expires": "Invalid Date"
-								}
-							],
-							"body": "{\n    \"message\": \"User data\",\n    \"data\": {\n        \"_id\": \"6220e4c67c45c63dc43cdb30\",\n        \"name\": \"Eniola Osabiya\",\n        \"email\": \"eosabiya@gmail.com\",\n        \"role\": \"admin\",\n        \"isActive\": true,\n        \"isVerified\": true,\n        \"createdAt\": \"2022-03-03T15:54:46.076Z\",\n        \"updatedAt\": \"2022-03-03T15:54:46.076Z\"\n    },\n    \"success\": true\n}"
-						},
-						{
-							"name": "Get One User",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb32",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"users",
-										"6220e4c67c45c63dc43cdb32"
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "Cross-Origin-Embedder-Policy",
-									"value": "require-corp"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Resource-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Origin-Agent-Cluster",
-									"value": "?1"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "61"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"3d-WkBD9AmDxYv5VdGOpc3ggKdR4xE\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 03 Mar 2022 16:03:30 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"User does not exist\",\n    \"data\": null,\n    \"success\": false\n}"
-						}
-					]
-				},
-				{
-					"name": "Create a User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Eniola Osabiya\",\n    \"email\": \"eosabiya+1@gmail.com\",\n    \"password\": \"password\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/users/",
-							"host": [
-								"{{DOMAIN_BASE_URL}}"
-							],
-							"path": [
-								"users",
-								""
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Create a User",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Eniola Osabiya\",\n    \"email\": \"eosabiya+1@gmail.com\",\n    \"password\": \"password\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/users/",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"users",
-										""
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "Cross-Origin-Embedder-Policy",
-									"value": "require-corp"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Resource-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Origin-Agent-Cluster",
-									"value": "?1"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "347"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"15b-fE67ST5ZJIokkaY6o181n6R7WO8\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 03 Mar 2022 16:05:57 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [
-								{
-									"expires": "Invalid Date"
-								}
-							],
-							"body": "{\n    \"message\": \"User created\",\n    \"data\": {\n        \"name\": \"Eniola Osabiya\",\n        \"email\": \"eosabiya+1@gmail.com\",\n        \"password\": \"$2a$10$HI3SFJLcaX64vIeUrpBiJ.m2Vge5iRapQcIRLJzysc4/MNNTjvAWK\",\n        \"role\": \"user\",\n        \"isActive\": true,\n        \"isVerified\": false,\n        \"_id\": \"6220e7650113c4d7689dc06a\",\n        \"createdAt\": \"2022-03-03T16:05:57.740Z\",\n        \"updatedAt\": \"2022-03-03T16:05:57.740Z\",\n        \"__v\": 0\n    },\n    \"success\": true\n}"
-						}
-					]
-				},
-				{
-					"name": "Update One User",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Eniola\",\n    \"email\": \"eosabiya+2@gmail.com\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
-							"host": [
-								"{{DOMAIN_BASE_URL}}"
-							],
-							"path": [
-								"users",
-								"6220e4c67c45c63dc43cdb30"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Update One User",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"name\": \"Eniola\",\n    \"email\": \"eosabiya+2@gmail.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"users",
-										"6220e4c67c45c63dc43cdb30"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "Cross-Origin-Embedder-Policy",
-									"value": "require-corp"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Resource-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Origin-Agent-Cluster",
-									"value": "?1"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "287"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"11f-3i4HPv4zfOZmOagaXUF5N0rKfHk\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 03 Mar 2022 16:08:22 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"User updated\",\n    \"data\": {\n        \"_id\": \"6220e4c67c45c63dc43cdb30\",\n        \"name\": \"Eniola\",\n        \"email\": \"eosabiya+2@gmail.com\",\n        \"password\": \"password\",\n        \"role\": \"admin\",\n        \"isActive\": true,\n        \"isVerified\": true,\n        \"createdAt\": \"2022-03-03T15:54:46.076Z\",\n        \"updatedAt\": \"2022-03-03T16:08:22.776Z\",\n        \"__v\": 0\n    },\n    \"success\": true\n}"
-						}
-					]
-				},
-				{
-					"name": "Delete One User - ADMIN",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
-							"host": [
-								"{{DOMAIN_BASE_URL}}"
-							],
-							"path": [
-								"users",
-								"6220e4c67c45c63dc43cdb30"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "Delete One User - ADMIN",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
-									"host": [
-										"{{DOMAIN_BASE_URL}}"
-									],
-									"path": [
-										"users",
-										"6220e4c67c45c63dc43cdb30"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "Cross-Origin-Embedder-Policy",
-									"value": "require-corp"
-								},
-								{
-									"key": "Cross-Origin-Opener-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "Cross-Origin-Resource-Policy",
-									"value": "same-origin"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Origin-Agent-Cluster",
-									"value": "?1"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "287"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"11f-YZ6unv1HpVD1vsWmKNqa2bMuOO4\""
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 03 Mar 2022 16:10:23 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [
-								{
-									"expires": "Invalid Date"
-								}
-							],
-							"body": "{\n    \"message\": \"User deleted\",\n    \"data\": {\n        \"_id\": \"6220e4c67c45c63dc43cdb30\",\n        \"name\": \"Eniola\",\n        \"email\": \"eosabiya+2@gmail.com\",\n        \"password\": \"password\",\n        \"role\": \"admin\",\n        \"isActive\": true,\n        \"isVerified\": true,\n        \"createdAt\": \"2022-03-03T15:54:46.076Z\",\n        \"updatedAt\": \"2022-03-03T16:09:01.837Z\",\n        \"__v\": 0\n    },\n    \"success\": true\n}"
-						}
-					]
-				}
-			],
-			"description": "This section contains all the user management routes for node-express-starter",
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "{{AUTH_TOKEN}}",
-						"type": "string"
-					}
-				]
-			},
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "DOMAIN_BASE_URL",
-			"value": "http://localhost:4000"
-		},
-		{
-			"key": "AUTH_TOKEN",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjBlNGM2N2M0NWM2M2RjNDNjZGIzMCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjQ2MzIyOTA4LCJleHAiOjE2NDYzMjY1MDh9.cjMls_es7s0u5ggO9zV0abz6CRU45OvsbrBR1d9VN7U"
-		}
-	]
+    "info": {
+        "name": "node-express-starter",
+        "description": "This is node-express-starter powered by Nodejs Express",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authentication",
+            "item": [
+                {
+                    "name": "Create an Account",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Eniola Osabiya\",\n    \"email\": \"eosabiya@gmail.com\",\n    \"password\": \"password\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{DOMAIN_BASE_URL}}/auth/register",
+                            "host": ["{{DOMAIN_BASE_URL}}"],
+                            "path": ["auth", "register"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Create an Account",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"name\": \"Eniola Osabiya\",\n    \"email\": \"eosabiya@gmail.com\",\n    \"password\": \"password\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/register",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "register"]
+                                }
+                            },
+                            "status": "Created",
+                            "code": 201,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "341"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"155-yBIxqu/azvOfP1kNJHFUFf8qeEk\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 18:51:12 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"New user registered successfully\",\n    \"data\": {\n        \"uid\": \"61a9159d8222c396b2e3bc90\",\n        \"email\": \"eosabiya@gmail.com\",\n        \"role\": \"user\",\n        \"verified\": false,\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTkxNTlkODIyMmMzOTZiMmUzYmM5MCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjM4NDcxMDY5fQ.5Sfy0WB5ylQkwMrJYoUBuas9eiNHDgrxyc4NjMKQUgs\"\n    },\n    \"success\": true\n}"
+                        },
+                        {
+                            "name": "Create an Account",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"name\": \"Eniola Osabiya\",\n    \"email\": \"eosabiya@gmail.com\",\n    \"password\": \"password\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/register",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "register"]
+                                }
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "62"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"3e-4sD5NK+9x77c3i/AGkIc+6GQ3G4\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 18:52:24 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Email already exists\",\n    \"data\": null,\n    \"success\": false\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Login to account",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"eosabiya@gmail.com\",\n    \"password\": \"password\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{DOMAIN_BASE_URL}}/auth/login",
+                            "host": ["{{DOMAIN_BASE_URL}}"],
+                            "path": ["auth", "login"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Login to account",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"email\": \"eosabiya@gmail.com\",\n    \"password\": \"password\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/login",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "login"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "352"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"160-bdI5yf3pRvBz6PVvviZqQd536PY\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 18:57:40 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"User login successful\",\n    \"data\": {\n        \"uid\": \"61a9159d8222c396b2e3bc90\",\n        \"email\": \"eosabiya@gmail.com\",\n        \"role\": \"user\",\n        \"verified\": false,\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTkxNTlkODIyMmMzOTZiMmUzYmM5MCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjM4NDcxNDYwLCJleHAiOjE2Mzg0NzUwNjB9.EP1-Rn6WYrhFhuVeOy1g5UlCZjF3ftm4pk4I-7TgbyA\"\n    },\n    \"success\": true\n}"
+                        },
+                        {
+                            "name": "Login to account",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"email\": \"eosabiya@gmail.co\",\n    \"password\": \"password\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/login",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "login"]
+                                }
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "69"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"45-iG1TRpsyL5eDmHDls2/Vxm3lRpg\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 18:58:10 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Incorrect email or password\",\n    \"data\": null,\n    \"success\": false\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Verify Email",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"userId\": \"61a9159d8222c396b2e3bc90\",\n    \"verifyToken\": \"7113bb81c3aa1c8d52adba342b0dc5d06601a54cc5bb88bd91b7aa5c32ecf9f4\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{DOMAIN_BASE_URL}}/auth/verify-email",
+                            "host": ["{{DOMAIN_BASE_URL}}"],
+                            "path": ["auth", "verify-email"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Verify Email",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"userId\": \"61a922af5b8c34ab50bfce90\",\n    \"verifyToken\": \"dd4ff6d1e14daeaf5b87bfa259f1c656db7df75a6db8eec3252c741091cda74d\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/verify-email",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "verify-email"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "68"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"44-C/JulxJZyE+y4goh1qB1Vk7njvk\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 19:47:30 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Email verified successfully\",\n    \"data\": null,\n    \"success\": true\n}"
+                        },
+                        {
+                            "name": "Verify Email",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"userId\": \"61a9159d8222c396b2e3bc90\",\n    \"verifyToken\": \"7113bb81c3aa1c8d52adba342b0dc5d06601a54cc5bb88bd91b7aa5c32ecf9f4\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/verify-email",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "verify-email"]
+                                }
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "81"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"51-HjXftyxOamYxG3ULr+ymCKOVGoY\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 19:44:36 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Invalid or expired password reset token\",\n    \"data\": null,\n    \"success\": false\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Request Email Verification",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"eosabiya@gmail.com\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{DOMAIN_BASE_URL}}/auth/request-email-verification",
+                            "host": ["{{DOMAIN_BASE_URL}}"],
+                            "path": ["auth", "request-email-verification"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Request Email Verification",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"email\": \"eosabiya@gmail.com\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/request-email-verification",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "request-email-verification"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "68"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"44-irqAxkhM1ArE+y7+Sot3ICZAw68\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 19:58:02 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Email verfication link sent\",\n    \"data\": null,\n    \"success\": true\n}"
+                        },
+                        {
+                            "name": "Request Email Verification",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"email\": \"eosabiya@gmail+1.com\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/request-email-verification",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "request-email-verification"]
+                                }
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "67"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"43-XCiNCdsCIfcNPUPB5r5nuVVSr1U\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 20:03:40 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Email is already verified\",\n    \"data\": null,\n    \"success\": false\n}"
+                        },
+                        {
+                            "name": "Request Email Verification",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"email\": \"eosabiya+0@gmail.com\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/request-email-verification",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "request-email-verification"]
+                                }
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "62"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"3e-+KKcNCmxs+ssr5QknpYOH6JbgzA\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 20:02:53 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Email does not exist\",\n    \"data\": null,\n    \"success\": false\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Request password reset",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"eosabiya@gmail.com\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{DOMAIN_BASE_URL}}/auth/request-password-reset",
+                            "host": ["{{DOMAIN_BASE_URL}}"],
+                            "path": ["auth", "request-password-reset"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Request password reset",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"email\": \"eosabiya@gmail.com\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/request-password-reset",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "request-password-reset"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "65"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"41-hLiBmvlVf8rCFmoQ8KTjrWwEftM\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 20:06:44 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Password reset link sent\",\n    \"data\": null,\n    \"success\": true\n}"
+                        },
+                        {
+                            "name": "Request password reset",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"email\": \"eosabiya+@gmail.com\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/request-password-reset",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "request-password-reset"]
+                                }
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "62"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"3e-+KKcNCmxs+ssr5QknpYOH6JbgzA\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 20:07:36 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Email does not exist\",\n    \"data\": null,\n    \"success\": false\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Reset Password",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"userId\": \"61a9159d8222c396b2e3bc90\",\n    \"password\": \"newpassword\",\n    \"resetToken\": \"b8f098aea7ad797b295f9b0a23778e04d95cf927f76786817e166ea109ddaa00\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{DOMAIN_BASE_URL}}/auth/reset-password",
+                            "host": ["{{DOMAIN_BASE_URL}}"],
+                            "path": ["auth", "reset-password"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Reset Password",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"userId\": \"61a9159d8222c396b2e3bc90\",\n    \"password\": \"newpassword\",\n    \"resetToken\": \"b8f098aea7ad797b295f9b0a23778e04d95cf927f76786817e166ea109ddaa00\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/reset-password",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "reset-password"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"39-13E8eUL2fqYBFuwxerex5m7Jwv4\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 20:12:45 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Password updated\",\n    \"data\": null,\n    \"success\": true\n}"
+                        },
+                        {
+                            "name": "Reset Password",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"userId\": \"61a9159d8222c396b2e3bc90\",\n    \"password\": \"newpassword\",\n    \"resetToken\": \"b8f098aea7ad797b295f9b0a23778e04d95cf927f76786817e166ea109ddaa00\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/auth/reset-password",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["auth", "reset-password"]
+                                }
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "81"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"51-HjXftyxOamYxG3ULr+ymCKOVGoY\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 02 Dec 2021 20:13:14 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Invalid or expired password reset token\",\n    \"data\": null,\n    \"success\": false\n}"
+                        }
+                    ]
+                }
+            ],
+            "description": "This section contains all the authentication routes for node-express-starter"
+        },
+        {
+            "name": "Users",
+            "item": [
+                {
+                    "name": "Get all Users - ADMIN",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{DOMAIN_BASE_URL}}/user",
+                            "host": ["{{DOMAIN_BASE_URL}}"],
+                            "path": ["user"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Get all Users",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/user",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["user"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "Cross-Origin-Embedder-Policy",
+                                    "value": "require-corp"
+                                },
+                                {
+                                    "key": "Cross-Origin-Opener-Policy",
+                                    "value": "same-origin"
+                                },
+                                {
+                                    "key": "Cross-Origin-Resource-Policy",
+                                    "value": "same-origin"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "Origin-Agent-Cluster",
+                                    "value": "?1"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "262"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"106-anT3zggowFGPj7D0O7FastSJrus\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 03 Mar 2022 15:59:36 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"All users\",\n    \"data\": [\n        {\n            \"_id\": \"6220e4c67c45c63dc43cdb30\",\n            \"name\": \"Eniola Osabiya\",\n            \"email\": \"eosabiya@gmail.com\",\n            \"role\": \"admin\",\n            \"isActive\": true,\n            \"isVerified\": true,\n            \"createdAt\": \"2022-03-03T15:54:46.076Z\",\n            \"updatedAt\": \"2022-03-03T15:54:46.076Z\"\n        }\n    ],\n    \"success\": true\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Get One User",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
+                            "host": ["{{DOMAIN_BASE_URL}}"],
+                            "path": ["users", "6220e4c67c45c63dc43cdb30"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Get One User",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["users", "6220e4c67c45c63dc43cdb30"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "Cross-Origin-Embedder-Policy",
+                                    "value": "require-corp"
+                                },
+                                {
+                                    "key": "Cross-Origin-Opener-Policy",
+                                    "value": "same-origin"
+                                },
+                                {
+                                    "key": "Cross-Origin-Resource-Policy",
+                                    "value": "same-origin"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "Origin-Agent-Cluster",
+                                    "value": "?1"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "260"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"104-9fF4jala4hA7DOLZbhSZNR5GmGM\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 03 Mar 2022 16:02:30 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [
+                                {
+                                    "expires": "Invalid Date"
+                                }
+                            ],
+                            "body": "{\n    \"message\": \"User data\",\n    \"data\": {\n        \"_id\": \"6220e4c67c45c63dc43cdb30\",\n        \"name\": \"Eniola Osabiya\",\n        \"email\": \"eosabiya@gmail.com\",\n        \"role\": \"admin\",\n        \"isActive\": true,\n        \"isVerified\": true,\n        \"createdAt\": \"2022-03-03T15:54:46.076Z\",\n        \"updatedAt\": \"2022-03-03T15:54:46.076Z\"\n    },\n    \"success\": true\n}"
+                        },
+                        {
+                            "name": "Get One User",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb32",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["users", "6220e4c67c45c63dc43cdb32"]
+                                }
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "Cross-Origin-Embedder-Policy",
+                                    "value": "require-corp"
+                                },
+                                {
+                                    "key": "Cross-Origin-Opener-Policy",
+                                    "value": "same-origin"
+                                },
+                                {
+                                    "key": "Cross-Origin-Resource-Policy",
+                                    "value": "same-origin"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "Origin-Agent-Cluster",
+                                    "value": "?1"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "61"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"3d-WkBD9AmDxYv5VdGOpc3ggKdR4xE\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 03 Mar 2022 16:03:30 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"User does not exist\",\n    \"data\": null,\n    \"success\": false\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a User",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Eniola Osabiya\",\n    \"email\": \"eosabiya+1@gmail.com\",\n    \"password\": \"password\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{DOMAIN_BASE_URL}}/users/",
+                            "host": ["{{DOMAIN_BASE_URL}}"],
+                            "path": ["users", ""]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Create a User",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"name\": \"Eniola Osabiya\",\n    \"email\": \"eosabiya+1@gmail.com\",\n    \"password\": \"password\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/users/",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["users", ""]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "Cross-Origin-Embedder-Policy",
+                                    "value": "require-corp"
+                                },
+                                {
+                                    "key": "Cross-Origin-Opener-Policy",
+                                    "value": "same-origin"
+                                },
+                                {
+                                    "key": "Cross-Origin-Resource-Policy",
+                                    "value": "same-origin"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "Origin-Agent-Cluster",
+                                    "value": "?1"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "347"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"15b-fE67ST5ZJIokkaY6o181n6R7WO8\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 03 Mar 2022 16:05:57 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [
+                                {
+                                    "expires": "Invalid Date"
+                                }
+                            ],
+                            "body": "{\n    \"message\": \"User created\",\n    \"data\": {\n        \"name\": \"Eniola Osabiya\",\n        \"email\": \"eosabiya+1@gmail.com\",\n        \"password\": \"$2a$10$HI3SFJLcaX64vIeUrpBiJ.m2Vge5iRapQcIRLJzysc4/MNNTjvAWK\",\n        \"role\": \"user\",\n        \"isActive\": true,\n        \"isVerified\": false,\n        \"_id\": \"6220e7650113c4d7689dc06a\",\n        \"createdAt\": \"2022-03-03T16:05:57.740Z\",\n        \"updatedAt\": \"2022-03-03T16:05:57.740Z\",\n        \"__v\": 0\n    },\n    \"success\": true\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update One User",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Eniola\",\n    \"email\": \"eosabiya+2@gmail.com\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
+                            "host": ["{{DOMAIN_BASE_URL}}"],
+                            "path": ["users", "6220e4c67c45c63dc43cdb30"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Update One User",
+                            "originalRequest": {
+                                "method": "PUT",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"name\": \"Eniola\",\n    \"email\": \"eosabiya+2@gmail.com\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["users", "6220e4c67c45c63dc43cdb30"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "Cross-Origin-Embedder-Policy",
+                                    "value": "require-corp"
+                                },
+                                {
+                                    "key": "Cross-Origin-Opener-Policy",
+                                    "value": "same-origin"
+                                },
+                                {
+                                    "key": "Cross-Origin-Resource-Policy",
+                                    "value": "same-origin"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "Origin-Agent-Cluster",
+                                    "value": "?1"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "287"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"11f-3i4HPv4zfOZmOagaXUF5N0rKfHk\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 03 Mar 2022 16:08:22 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"User updated\",\n    \"data\": {\n        \"_id\": \"6220e4c67c45c63dc43cdb30\",\n        \"name\": \"Eniola\",\n        \"email\": \"eosabiya+2@gmail.com\",\n        \"password\": \"password\",\n        \"role\": \"admin\",\n        \"isActive\": true,\n        \"isVerified\": true,\n        \"createdAt\": \"2022-03-03T15:54:46.076Z\",\n        \"updatedAt\": \"2022-03-03T16:08:22.776Z\",\n        \"__v\": 0\n    },\n    \"success\": true\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Delete One User - ADMIN",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
+                            "host": ["{{DOMAIN_BASE_URL}}"],
+                            "path": ["users", "6220e4c67c45c63dc43cdb30"]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Delete One User - ADMIN",
+                            "originalRequest": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{DOMAIN_BASE_URL}}/users/6220e4c67c45c63dc43cdb30",
+                                    "host": ["{{DOMAIN_BASE_URL}}"],
+                                    "path": ["users", "6220e4c67c45c63dc43cdb30"]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                },
+                                {
+                                    "key": "Content-Security-Policy",
+                                    "value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                                },
+                                {
+                                    "key": "Cross-Origin-Embedder-Policy",
+                                    "value": "require-corp"
+                                },
+                                {
+                                    "key": "Cross-Origin-Opener-Policy",
+                                    "value": "same-origin"
+                                },
+                                {
+                                    "key": "Cross-Origin-Resource-Policy",
+                                    "value": "same-origin"
+                                },
+                                {
+                                    "key": "X-DNS-Prefetch-Control",
+                                    "value": "off"
+                                },
+                                {
+                                    "key": "Expect-CT",
+                                    "value": "max-age=0"
+                                },
+                                {
+                                    "key": "X-Frame-Options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "Strict-Transport-Security",
+                                    "value": "max-age=15552000; includeSubDomains"
+                                },
+                                {
+                                    "key": "X-Download-Options",
+                                    "value": "noopen"
+                                },
+                                {
+                                    "key": "X-Content-Type-Options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "Origin-Agent-Cluster",
+                                    "value": "?1"
+                                },
+                                {
+                                    "key": "X-Permitted-Cross-Domain-Policies",
+                                    "value": "none"
+                                },
+                                {
+                                    "key": "Referrer-Policy",
+                                    "value": "no-referrer"
+                                },
+                                {
+                                    "key": "X-XSS-Protection",
+                                    "value": "0"
+                                },
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "287"
+                                },
+                                {
+                                    "key": "ETag",
+                                    "value": "W/\"11f-YZ6unv1HpVD1vsWmKNqa2bMuOO4\""
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 03 Mar 2022 16:10:23 GMT"
+                                },
+                                {
+                                    "key": "Connection",
+                                    "value": "keep-alive"
+                                },
+                                {
+                                    "key": "Keep-Alive",
+                                    "value": "timeout=5"
+                                }
+                            ],
+                            "cookie": [
+                                {
+                                    "expires": "Invalid Date"
+                                }
+                            ],
+                            "body": "{\n    \"message\": \"User deleted\",\n    \"data\": {\n        \"_id\": \"6220e4c67c45c63dc43cdb30\",\n        \"name\": \"Eniola\",\n        \"email\": \"eosabiya+2@gmail.com\",\n        \"password\": \"password\",\n        \"role\": \"admin\",\n        \"isActive\": true,\n        \"isVerified\": true,\n        \"createdAt\": \"2022-03-03T15:54:46.076Z\",\n        \"updatedAt\": \"2022-03-03T16:09:01.837Z\",\n        \"__v\": 0\n    },\n    \"success\": true\n}"
+                        }
+                    ]
+                }
+            ],
+            "description": "This section contains all the user management routes for node-express-starter",
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{AUTH_TOKEN}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [""]
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [""]
+                    }
+                }
+            ]
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "DOMAIN_BASE_URL",
+            "value": "http://localhost:4000"
+        },
+        {
+            "key": "AUTH_TOKEN",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjBlNGM2N2M0NWM2M2RjNDNjZGIzMCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjQ2MzIyOTA4LCJleHAiOjE2NDYzMjY1MDh9.cjMls_es7s0u5ggO9zV0abz6CRU45OvsbrBR1d9VN7U"
+        }
+    ]
 }

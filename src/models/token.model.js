@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const tokenSchema = new mongoose.Schema({
-    userId: {
+    user_id: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "user"
@@ -10,7 +10,7 @@ const tokenSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    createdAt: {
+    created_at: {
         type: Date,
         required: true,
         default: Date.now,

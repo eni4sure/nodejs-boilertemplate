@@ -24,7 +24,7 @@ class AuthService {
             uid: user._id,
             email: user.email,
             role: user.role,
-            verified: user.isVerified,
+            verified: user.is_verified,
             token: token
         });
     }
@@ -47,7 +47,7 @@ class AuthService {
             uid: user._id,
             email: user.email,
             role: user.role,
-            verified: user.isVerified,
+            verified: user.is_verified,
             token: token
         });
     }
@@ -57,7 +57,7 @@ class AuthService {
 
         const user = await User.findOne({ _id: userId });
         if (!user) throw new CustomError("User does not exist");
-        if (user.isVerified) throw new CustomError("email is already verified");
+        if (user.is_verified) throw new CustomError("email is already verified");
 
         const VToken = await Token.findOne({ userId });
         if (!VToken) throw new CustomError("invalid or expired password reset token");
@@ -65,7 +65,7 @@ class AuthService {
         const isValid = await bcrypt.compare(verifyToken, VToken.token);
         if (!isValid) throw new CustomError("invalid or expired password reset token");
 
-        await User.updateOne({ _id: userId }, { $set: { isVerified: true } }, { new: true });
+        await User.updateOne({ _id: userId }, { $set: { is_verified: true } }, { new: true });
 
         await VToken.deleteOne();
 
@@ -75,7 +75,7 @@ class AuthService {
     async requestEmailVerification(email) {
         const user = await User.findOne({ email });
         if (!user) throw new CustomError("email does not exist");
-        if (user.isVerified) throw new CustomError("email is already verified");
+        if (user.is_verified) throw new CustomError("email is already verified");
 
         const token = await Token.findOne({ userId: user._id });
         if (token) await token.deleteOne();
@@ -86,7 +86,7 @@ class AuthService {
         await new Token({
             userId: user._id,
             token: hash,
-            createdAt: Date.now()
+            created_at: Date.now()
         }).save();
 
         const link = `${url.CLIENT_URL}/email-verification?uid=${user._id}&verifyToken=${verifyToken}`;
@@ -110,7 +110,7 @@ class AuthService {
         await new Token({
             userId: user._id,
             token: hash,
-            createdAt: Date.now()
+            created_at: Date.now()
         }).save();
 
         const link = `${url.CLIENT_URL}/reset-password?uid=${user._id}&resetToken=${resetToken}`;
