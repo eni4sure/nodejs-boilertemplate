@@ -19,10 +19,17 @@ function auth(roles = []) {
 
         const user = await User.findOne({ _id: decoded.id });
 
-        if (!user) throw new CustomError("unauthorized access: User does not exist", 401);
-        if (!user.is_active) throw new CustomError("unauthorized access: User has been deactivated", 401);
-        if (!user.is_verified) throw new CustomError("unauthorized access: Please verify email address", 401);
-        if (!roles.includes(user.role)) throw new CustomError("unauthorized access", 401);
+        if (!user) throw new CustomError("-middleware/user-not-found", 401);
+        // if (!user) throw new CustomError("unauthorized access: User does not exist", 401);
+
+        if (!user.is_active) throw new CustomError("-middleware/user-deactivated", 401);
+        // if (!user.is_active) throw new CustomError("unauthorized access: User has been deactivated", 401);
+
+        if (!user.is_verified) throw new CustomError("-middleware/user-not-verified", 401);
+        // if (!user.is_verified) throw new CustomError("unauthorized access: Please verify email address", 401);
+
+        if (!roles.includes(user.role)) throw new CustomError("-middleware/user-not-authorized", 401);
+        // if (!roles.includes(user.role)) throw new CustomError("unauthorized access", 401);
 
         req.$user = user;
 
