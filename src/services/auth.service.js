@@ -32,10 +32,10 @@ class AuthService {
         if (!data.password) throw new CustomError("Password is required");
 
         // Check if user exist
-        const user = await User.findOne({ email: data.email });
+        const user = await User.findOne({ email: data.email }).select("+password");
         if (!user) throw new CustomError("incorrect email or password");
 
-        //Check if user password is correct
+        // Check if user password is correct
         const isCorrect = await bcrypt.compare(data.password, user.password);
         if (!isCorrect) throw new CustomError("incorrect email or password");
 
@@ -48,6 +48,9 @@ class AuthService {
         }
 
         const token = JWT.sign({ id: user._id, role: user.role, email: user.email }, JWT_SECRET, { expiresIn: 60 * 60 });
+
+        // Remove password field
+        delete user.password;
 
         return { user, token: token };
     }
@@ -156,7 +159,7 @@ class AuthService {
         if (!data.currentPassword) throw new CustomError("current Password is required");
         if (!data.newPassword) throw new CustomError("new Password is required");
 
-        const user = await User.findOne({ _id: userId });
+        const user = await User.findOne({ _id: userId }).select("+password");
         if (!user) throw new CustomError("user does not exist");
 
         // check if user password is correct
