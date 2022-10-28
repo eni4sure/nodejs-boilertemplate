@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const AuthCtrl = require("./../controllers/auth.controller");
-const upload = require("./../middlewares/multer.middleware");
+const AuthCtrl = require("../controllers/auth.controller");
+const upload = require("../middlewares/multer.middleware");
 
 router.post("/register", upload("image"), AuthCtrl.register);
 

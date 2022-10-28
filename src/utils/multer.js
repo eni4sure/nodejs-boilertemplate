@@ -1,6 +1,6 @@
 const multer = require("multer");
-const { nanoid } = require("nanoid");
 const CustomError = require("./custom-error");
+const UniqueIDGenerator = require("./../utils/unique-id-generator");
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -8,9 +8,9 @@ const storage = multer.diskStorage({
         cb(null, "uploads");
     },
     filename: (req, file, cb) => {
-        // Generate unique filename form current date and nanoid
+        // Generate unique filename form current date and random string
         const fileExt = file.originalname.split(".").pop();
-        const filename = `${nanoid()}_${new Date().getTime()}.${fileExt}`;
+        const filename = `${new UniqueIDGenerator().generateRandom()}_${new Date().getTime()}.${fileExt}`;
 
         cb(null, filename);
     }

@@ -11,4 +11,12 @@ router.get("/", (req, res) => {
     return res.status(200).json({ message: "Hello world from node-express-starter! :)" });
 });
 
+// Allow Playground to be accessed in development
+if (process.env.NODE_ENV === "development") {
+    router.use("/playground", async (req, res) => {
+        const results = {};
+        res.json(results);
+    });
+}
+
 module.exports = router;

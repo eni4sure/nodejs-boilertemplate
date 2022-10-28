@@ -1,10 +1,16 @@
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
-const { BCRYPT_SALT } = require("./../config");
+const { BCRYPT_SALT } = require("../config");
+const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
     {
-        name: {
+        firstName: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        lastName: {
             type: String,
             required: true,
             trim: true
@@ -17,8 +23,10 @@ const userSchema = new mongoose.Schema(
         },
         password: {
             type: String,
-            required: true
+            required: true,
+            select: false
         },
+
         image: {
             type: String,
             required: false
@@ -27,22 +35,28 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
             trim: true,
-            enum: ["user", "admin"],
-            default: "user"
+            enum: ["user", "admin"]
         },
-        is_active: {
+
+        isActive: {
             type: Boolean,
             required: true,
             default: true
         },
-        is_verified: {
+        isEmailVerified: {
             type: Boolean,
             required: true,
             default: false
+        },
+
+        lastActive: {
+            type: Date,
+            required: true,
+            default: Date.now
         }
     },
     {
-        timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
+        timestamps: true
     }
 );
 
@@ -54,5 +68,13 @@ userSchema.pre("save", async function (next) {
 
     next();
 });
+
+// set mongoose options to have lean turned on by default | ref: https://itnext.io/performance-tips-for-mongodb-mongoose-190732a5d382
+mongoose.Query.prototype.setOptions = function () {
+    if (this.mongooseOptions().lean == null) {
+        this.mongooseOptions({ lean: true });
+    }
+    return this;
+};
 
 module.exports = mongoose.model("user", userSchema);

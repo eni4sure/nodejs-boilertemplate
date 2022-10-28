@@ -6,6 +6,9 @@ const morgan = require("morgan");
 const express = require("express");
 
 module.exports = (app) => {
+    // Set Proxy
+    app.set("trust proxy", true);
+
     // Set Env File
     dotenv.config({
         path: path.resolve(__dirname, "..", "..", ".env")
@@ -28,7 +31,7 @@ module.exports = (app) => {
     // Express body parser
     app.use(express.urlencoded({ extended: true }));
 
-    // Server Uploads
+    // Serve Uploads
     app.use("/uploads", express.static(path.join(__dirname, "..", "..", "uploads")));
 
     return app;

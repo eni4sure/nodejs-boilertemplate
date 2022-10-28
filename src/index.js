@@ -4,6 +4,9 @@ const app = require("express")();
 // Pre-route middlewares
 require("./middlewares/pre-route.middleware")(app);
 
+// Uncomment to add 5 seconds delay to routes // For Testing Only
+// app.use((req, res, next) => setTimeout(next, 5000));
+
 // routes
 app.use(require("./routes"));
 

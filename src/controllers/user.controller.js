@@ -1,5 +1,5 @@
-const response = require("./../utils/response");
-const UserService = require("./../services/user.service");
+const response = require("../utils/response");
+const UserService = require("../services/user.service");
 
 class UserContoller {
     async create(req, res) {
@@ -12,9 +12,19 @@ class UserContoller {
         res.status(200).send(response("all users", result));
     }
 
+    async getMe(req, res) {
+        const result = await UserService.getMe(req.$user._id);
+        res.status(200).send(response("user data", result));
+    }
+
     async getOne(req, res) {
         const result = await UserService.getOne(req.params.userId);
         res.status(200).send(response("user data", result));
+    }
+
+    async updateUserProfile(req, res) {
+        const result = await UserService.updateUserProfile(req.body, req.$user._id);
+        res.status(200).send(response("profile updated", result));
     }
 
     async update(req, res) {

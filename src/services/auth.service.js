@@ -1,37 +1,35 @@
-const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
+const bcrypt = require("bcryptjs");
 const JWT = require("jsonwebtoken");
 
-const User = require("./../models/user.model");
-const Token = require("./../models/token.model");
-const CustomError = require("./../utils/custom-error");
-const MailService = require("./../services/mail.service");
-const { JWT_SECRET, BCRYPT_SALT, url } = require("./../config");
+const UserService = require("./user.service");
+
+const User = require("../models/user.model");
+const Token = require("../models/token.model");
+
+const CustomError = require("../utils/custom-error");
+const MailService = require("../services/mail.service");
+const { JWT_SECRET, BCRYPT_SALT, URL } = require("../config");
 
 class AuthService {
     async register(data) {
-        let user = await User.findOne({ email: data.email });
-        if (user) throw new CustomError("email already exists");
+        // Create new user
+        const user = await UserService.create(data);
 
-        user = new User(data);
-        const token = JWT.sign({ id: user._id, role: user.role }, JWT_SECRET);
-        await user.save();
+        // Generate token
+        const token = JWT.sign({ id: user._id, role: user.role, email: user.email }, JWT_SECRET, { expiresIn: 60 * 60 });
 
         // Request email verification
-        await this.requestEmailVerification(user.email);
+        await this.requestEmailVerification(user.email, true);
 
-        return (data = {
-            uid: user._id,
-            email: user.email,
-            role: user.role,
-            verified: user.is_verified,
-            token: token
-        });
+        return { user, token: token };
     }
 
-    async login(data) {
+    async login(req) {
+        const data = req.body;
+
         if (!data.email) throw new CustomError("email is required");
-        if (!data.password) throw new CustomError("password is required");
+        if (!data.password) throw new CustomError("Password is required");
 
         // Check if user exist
         const user = await User.findOne({ email: data.email });
@@ -41,43 +39,48 @@ class AuthService {
         const isCorrect = await bcrypt.compare(data.password, user.password);
         if (!isCorrect) throw new CustomError("incorrect email or password");
 
-        const token = await JWT.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: 60 * 60 });
+        if (data.mode === "admin") {
+            // if loginMode is admin, confirm the user role is admin
+            if (user.role !== "admin") throw new CustomError("incorrect email or password");
+        } else {
+            // if loginMode is not admin, don't allow the user to login here
+            if (user.role === "admin") throw new CustomError("admin account cannot be used to login here");
+        }
 
-        return (data = {
-            uid: user._id,
-            email: user.email,
-            role: user.role,
-            verified: user.is_verified,
-            token: token
-        });
+        const token = JWT.sign({ id: user._id, role: user.role, email: user.email }, JWT_SECRET, { expiresIn: 60 * 60 });
+
+        return { user, token: token };
     }
 
     async verifyEmail(data) {
-        const { userId, verifyToken } = data;
+        if (!data.userId) throw new CustomError("userId is required");
+        if (!data.verifyToken) throw new CustomError("verifyToken is required");
 
-        const user = await User.findOne({ _id: userId });
+        const user = await User.findOne({ _id: data.userId });
         if (!user) throw new CustomError("User does not exist");
-        if (user.is_verified) throw new CustomError("email is already verified");
+        if (user.isEmailVerified) throw new CustomError("email is already verified");
 
-        const VToken = await Token.findOne({ userId });
+        const VToken = await Token.findOne({ userId: data.userId }).lean(false);
         if (!VToken) throw new CustomError("invalid or expired password reset token");
 
-        const isValid = await bcrypt.compare(verifyToken, VToken.token);
+        const isValid = await bcrypt.compare(data.verifyToken, VToken.token);
         if (!isValid) throw new CustomError("invalid or expired password reset token");
 
-        await User.updateOne({ _id: userId }, { $set: { is_verified: true } }, { new: true });
+        await User.updateOne({ _id: data.userId }, { $set: { isEmailVerified: true } }, { new: true });
 
         await VToken.deleteOne();
 
         return;
     }
 
-    async requestEmailVerification(email) {
+    async requestEmailVerification(email, isNewUser) {
+        if (!email) throw new CustomError("email is required");
+
         const user = await User.findOne({ email });
         if (!user) throw new CustomError("email does not exist");
-        if (user.is_verified) throw new CustomError("email is already verified");
+        if (user.isEmailVerified) throw new CustomError("email is already verified");
 
-        const token = await Token.findOne({ userId: user._id });
+        const token = await Token.findOne({ userId: user._id }).lean(false);
         if (token) await token.deleteOne();
 
         const verifyToken = crypto.randomBytes(32).toString("hex");
@@ -86,22 +89,30 @@ class AuthService {
         await new Token({
             userId: user._id,
             token: hash,
-            created_at: Date.now()
+            createdAt: Date.now()
         }).save();
 
-        const link = `${url.CLIENT_URL}/email-verification?uid=${user._id}&verifyToken=${verifyToken}`;
+        const link = `${URL.DASHBOARD_URL}/auth/email-verification?uid=${user._id}&verifyToken=${verifyToken}`;
 
-        // Send Mail
-        await new MailService(user).sendEmailVerificationMail(link);
+        if (isNewUser) {
+            // Send New Account Email + Verification Link Mail
+            await new MailService(user).sendNewAccountEmail(link);
+        } else {
+            // Send New Verification Link Mail
+            await new MailService(user).sendVerificationLinkEmail(link);
+        }
 
         return;
     }
 
     async requestPasswordReset(email) {
-        const user = await User.findOne({ email });
-        if (!user) throw new CustomError("email does not exist");
+        if (!email) throw new CustomError("email is required");
 
-        const token = await Token.findOne({ userId: user._id });
+        const user = await User.findOne({ email });
+        // Don't throw error if user doesn't exist, just return null - so spammers don't use this route to know emails on the platform
+        if (!user) return;
+
+        const token = await Token.findOne({ userId: user._id }).lean(false);
         if (token) await token.deleteOne();
 
         const resetToken = crypto.randomBytes(32).toString("hex");
@@ -110,29 +121,31 @@ class AuthService {
         await new Token({
             userId: user._id,
             token: hash,
-            created_at: Date.now()
+            createdAt: Date.now()
         }).save();
 
-        const link = `${url.CLIENT_URL}/reset-password?uid=${user._id}&resetToken=${resetToken}`;
+        const link = `${URL.DASHBOARD_URL}/auth/reset-password?uid=${user._id}&resetToken=${resetToken}`;
 
         // Send Mail
-        await new MailService(user).sendPasswordResetMail(link);
+        await new MailService(user).sendPasswordResetEmail(link);
 
         return;
     }
 
     async resetPassword(data) {
-        const { userId, resetToken, password } = data;
+        if (!data.userId) throw new CustomError("userId is required");
+        if (!data.password) throw new CustomError("password is required");
+        if (!data.resetToken) throw new CustomError("resetToken is required");
 
-        const RToken = await Token.findOne({ userId });
+        const RToken = await Token.findOne({ userId: data.userId }).lean(false);
         if (!RToken) throw new CustomError("invalid or expired password reset token");
 
-        const isValid = await bcrypt.compare(resetToken, RToken.token);
+        const isValid = await bcrypt.compare(data.resetToken, RToken.token);
         if (!isValid) throw new CustomError("invalid or expired password reset token");
 
-        const hash = await bcrypt.hash(password, BCRYPT_SALT);
+        const hash = await bcrypt.hash(data.password, BCRYPT_SALT);
 
-        await User.updateOne({ _id: userId }, { $set: { password: hash } }, { new: true });
+        await User.updateOne({ _id: data.userId }, { $set: { password: hash } }, { new: true });
 
         await RToken.deleteOne();
 
@@ -140,14 +153,17 @@ class AuthService {
     }
 
     async updatePassword(userId, data) {
-        const user = await User.findOne({ _id: userId });
-        if (!user) throw new CustomError("User dose not exist");
+        if (!data.currentPassword) throw new CustomError("current Password is required");
+        if (!data.newPassword) throw new CustomError("new Password is required");
 
-        //Check if user password is correct
-        const isCorrect = await bcrypt.compare(data.password, user.password);
+        const user = await User.findOne({ _id: userId });
+        if (!user) throw new CustomError("user does not exist");
+
+        // check if user password is correct
+        const isCorrect = await bcrypt.compare(data.currentPassword, user.password);
         if (!isCorrect) throw new CustomError("incorrect password");
 
-        const hash = await bcrypt.hash(data.password, BCRYPT_SALT);
+        const hash = await bcrypt.hash(data.newPassword, BCRYPT_SALT);
 
         await User.updateOne({ _id: userId }, { $set: { password: hash } }, { new: true });
 
