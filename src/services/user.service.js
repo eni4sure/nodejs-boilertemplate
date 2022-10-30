@@ -2,21 +2,22 @@ const User = require("./../models/user.model");
 const CustomError = require("./../utils/custom-error");
 
 class UserService {
-    async create(data) {
+    async create(data, user = {}) {
         if (!data.firstName) throw new CustomError("first name is required");
         if (!data.lastName) throw new CustomError("last name is required");
         if (!data.email) throw new CustomError("email is required");
         if (!data.password) throw new CustomError("password is required");
 
-        const user = await User.findOne({ email: data.email });
-        if (user) throw new CustomError("email already exists");
+        const checkEmail = await User.findOne({ email: data.email });
+        if (checkEmail) throw new CustomError("email already exists");
 
         const context = {
             firstName: data.firstName,
             lastName: data.lastName,
             email: data.email,
             password: data.password,
-            role: "user"
+            // Allow an admin to create another admin user
+            role: user.role === "admin" ? data.role || "user" : "user"
         };
 
         return await new User(context).save();
