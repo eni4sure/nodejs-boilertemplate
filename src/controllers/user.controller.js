@@ -3,7 +3,7 @@ const UserService = require("../services/user.service");
 
 class UserContoller {
     async create(req, res) {
-        const result = await UserService.create(req.body);
+        const result = await UserService.create(req.body, req.$user);
         res.status(200).send(response("User created", result));
     }
 
