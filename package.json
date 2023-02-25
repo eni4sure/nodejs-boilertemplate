@@ -7,7 +7,10 @@
     "scripts": {
         "start": "node src/index.js",
         "start:prod": "pm2-runtime start ecosystem.config.js --env production",
-        "dev": "nodemon src/index.js"
+        "dev": "nodemon src/index.js",
+        "migrate": "migrate-mongo",
+        "migrate:up": "migrate-mongo up",
+        "migrate:down": "migrate-mongo down"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
@@ -17,6 +20,7 @@
         "express-async-errors": "^3.1.1",
         "helmet": "^5.0.2",
         "jsonwebtoken": "^8.5.1",
+        "migrate-mongo": "^9.0.0",
         "moment": "^2.29.4",
         "mongoose": "^6.2.4",
         "morgan": "^1.10.0",
