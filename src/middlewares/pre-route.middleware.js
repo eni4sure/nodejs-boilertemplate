@@ -28,6 +28,9 @@ module.exports = (app) => {
 
     // app.use(express.static(path.join(__dirname, "..", "..", "public")));
 
+    // Serve API documentation
+    app.use("/docs", express.static(path.join(__dirname, "..", "..", "docs")));
+
     // Express body parser
     app.use(express.urlencoded({ extended: true }));
 

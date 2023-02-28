@@ -1,0 +1,21 @@
+{
+    "name": "node-express-starter-backend",
+    "version": "0.1.0",
+    "description": "",
+    "title": "API Documentation",
+    "url": "http://localhost:4000",
+    "header": {
+        "title": "Introduction",
+        "filename": "docs/apidoc/header.md"
+    },
+    "footer": {
+        "title": "Final Notes",
+        "filename": "docs/apidoc/footer.md"
+    },
+    "template": {
+        "withCompare": true,
+        "withGenerator": true,
+        "aloneDisplay": true,
+        "showRequiredLabels": true
+    }
+}

@@ -7,3 +7,8 @@ node_modules
 # exclude files in uploads
 uploads/*
 !uploads/.gitkeep
+
+# exclude files in docs
+docs/*
+!docs/apidoc
+!docs/.gitkeep
