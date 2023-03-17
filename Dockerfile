@@ -18,13 +18,16 @@ COPY ./package.json ./
 # By using --production and --no-cache flags with yarn install, we ensure that only production dependencies are installed, and that the cache is not saved, resulting in a smaller image size.
 RUN yarn install --production --no-cache
 
+# Copy the rest of the application code to the working directory
+COPY ./ .
+
 # Custom build workflows can be added here
 # ============================================================
 
-# ============================================================
+# - Build api docs // Uncomment below to enable
+# RUN yarn generate:docs
 
-# Copy the rest of the application code to the working directory
-COPY ./ .
+# ============================================================
 
 # Set port environment variable
 ENV PORT=80
