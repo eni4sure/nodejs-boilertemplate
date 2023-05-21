@@ -5,10 +5,8 @@ node_modules
 .env
 
 # exclude files in uploads
-uploads/*
-!uploads/.gitkeep
+public/uploads/*
+!public/uploads/.gitkeep
 
-# exclude files in docs
-docs/*
-!docs/apidoc
-!docs/.gitkeep
+# exclude files in dist
+dist/
