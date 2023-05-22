@@ -1,3 +1,10 @@
+import path from "path";
+import dotenv from "dotenv";
+
+dotenv.config({
+    path: path.resolve(__dirname, "..", "..", ".env"),
+});
+
 export default {
     APP_NAME: "nodejs-boilertemplate",
 
@@ -20,11 +27,11 @@ export default {
     },
 
     MAILER: {
-        HOST: process.env.MAILER_HOST,
-        USER: process.env.MAILER_USER,
-        PASSWORD: process.env.MAILER_PASSWORD,
-        PORT: process.env.MAILER_PORT,
-        SECURE: process.env.MAILER_SECURE,
+        SMTP_HOST: process.env.MAILER_SMTP_HOST,
+        SMTP_PORT: process.env.MAILER_SMTP_PORT,
+        SMTP_USER: process.env.MAILER_SMTP_USER,
+        SMTP_PASSWORD: process.env.MAILER_SMTP_PASSWORD,
+        SECURE: process.env.MAILER_SECURE || false,
         DOMAIN: "@nodejs-boilertemplate.com",
     },
 };

@@ -1,6 +1,5 @@
 import cors from "cors";
 import path from "path";
-import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import express, { Express } from "express";
@@ -8,11 +7,6 @@ import express, { Express } from "express";
 const configurePreRouteMiddleware = (app: Express): Express => {
     // Set Proxy
     app.set("trust proxy", true);
-
-    // Set Env File
-    dotenv.config({
-        path: path.resolve(__dirname, "..", "..", ".env"),
-    });
 
     // enable CORS
     app.use(cors());

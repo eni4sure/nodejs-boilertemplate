@@ -2,6 +2,7 @@ import "express-async-errors";
 import express, { Express } from "express";
 
 import routes from "@/routes";
+import mailer from "@/libraries/mailer";
 import { connectMongoDB } from "@/libraries/mongo";
 import { configureErrorMiddleware } from "@/middlewares/error.middleware";
 import { configurePreRouteMiddleware } from "@/middlewares/pre-route.middleware";
@@ -26,6 +27,9 @@ const PORT: number | string = process.env.PORT || 4000;
 app.listen(PORT, async () => {
     // Initialize MongoDB connection
     await connectMongoDB();
+
+    // Initialize mailer connection
+    await mailer.verifyConnection()
 
     console.log(`:::> Server listening on port ${PORT} @ http://localhost:${PORT}`);
 });
