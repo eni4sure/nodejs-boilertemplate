@@ -29,7 +29,7 @@ app.listen(PORT, async () => {
     await connectMongoDB();
 
     // Initialize mailer connection
-    await mailer.verifyConnection()
+    await mailer.verifyConnection();
 
     console.log(`:::> Server listening on port ${PORT} @ http://localhost:${PORT}`);
 });

@@ -41,6 +41,12 @@ class Mailer {
     }
 
     async sendMail(mailOptions: nodemailer.SendMailOptions) {
+        // Set default
+        mailOptions = {
+            ...mailOptions,
+            from: mailOptions.from || CONFIGS.DEFAULT_EMAIL_FROM,
+        };
+
         return this.transporter.sendMail(mailOptions).then((info) => {
             console.log(`:::> Mail sent: ${info.messageId}`);
 

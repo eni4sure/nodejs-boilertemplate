@@ -3,7 +3,8 @@
   "compilerOptions": {
     /* Language and Environment */
     "target": "es2016",
-    "lib": ["ESNext"],
+    "lib": ["DOM", "ESNext"],
+    "jsx": "react-jsx",
     "moduleDetection": "auto",
 
     /* Modules */

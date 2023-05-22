@@ -19,8 +19,7 @@ router.get("/", (_req: Request, res: Response) => {
 // playground: can be used to test routes and other stuffs in development mode
 if (process.env.NODE_ENV === "development") {
     router.use("/playground", async (_req: Request, res: Response) => {
-        const results = {};
-
+        const results: any = {};
         res.json(results);
     });
 }

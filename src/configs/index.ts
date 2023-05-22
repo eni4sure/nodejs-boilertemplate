@@ -7,6 +7,7 @@ dotenv.config({
 
 export default {
     APP_NAME: "nodejs-boilertemplate",
+    DEFAULT_EMAIL_FROM: "nodejs-boilertemplate <no-reply@nodejs-boilertemplate.com>",
 
     MONGODB_URI: process.env.MONGO_ATLAS_URI || "mongodb://127.0.0.1:27017/nodejs-boilertemplate",
 
@@ -32,6 +33,5 @@ export default {
         SMTP_USER: process.env.MAILER_SMTP_USER,
         SMTP_PASSWORD: process.env.MAILER_SMTP_PASSWORD,
         SECURE: process.env.MAILER_SECURE || false,
-        DOMAIN: "@nodejs-boilertemplate.com",
     },
 };
