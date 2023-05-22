@@ -16,7 +16,7 @@ function auth(roles: string[] = []) {
     return async (req: Request, _res: Response, next: NextFunction) => {
         if (!req.headers.authorization) throw new CustomError("unauthorized access: token not found", 401);
 
-        const token: string = req.headers.authorization.split(" ")[1]!;
+        const token: string = req.headers.authorization.split(" ")[1] || "";
 
         const decoded: any = JWT.verify(token, CONFIG.JWT_SECRET, (err: any, decoded: any) => {
             if (err) throw new CustomError("-middleware/token-expired", 401);

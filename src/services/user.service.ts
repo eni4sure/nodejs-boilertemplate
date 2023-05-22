@@ -54,7 +54,7 @@ class UserService {
         if (!user) throw new CustomError("user not found", 404);
 
         // Check if password is correct
-        const isPasswordCorrect = await bcryptjs.compare(data.body.currentPassword, user.password!);
+        const isPasswordCorrect = await bcryptjs.compare(data.body.currentPassword, user.password || "");
         if (!isPasswordCorrect) throw new CustomError("incorrect password", 400);
 
         // Hash new password and update user

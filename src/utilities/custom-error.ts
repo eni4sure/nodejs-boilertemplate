@@ -7,7 +7,7 @@ class CustomError extends Error {
      * @param {*} message Error message for request response
      * @param {number} statusCode HTTP status code. Default is 400
      */
-    constructor(message: any, statusCode?: number) {
+    constructor(message: string, statusCode?: number) {
         super(message);
 
         this.name = this.constructor.name;
