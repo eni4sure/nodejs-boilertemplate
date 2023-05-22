@@ -7,10 +7,10 @@ import VerificationLinkEmail from "@/email-templates/verification-link";
 import PasswordResetEmail from "@/email-templates/password-reset";
 
 class MailService {
-    async sendWelcomeUserEmail(context: { user: Pick<IUser, "firstName" | "email">; link: string }) {
+    async sendWelcomeUserEmail(context: { user: Pick<IUser, "_id" | "firstName" | "email">; verificationToken: string }) {
         const emailProp = {
             firstName: context.user.firstName,
-            verificationLink: context.link,
+            verificationLink: `http://localhost:3000/auth/verify-email?verificationToken=${context.verificationToken}&userId=${context.user._id}`,
         };
 
         return await mailer.sendMail({
@@ -21,10 +21,10 @@ class MailService {
         });
     }
 
-    async sendVerificationLinkEmail(context: { user: Pick<IUser, "firstName" | "email">; link: string }) {
+    async sendVerificationLinkEmail(context: { user: Pick<IUser, "_id" | "firstName" | "email">; verificationToken: string }) {
         const emailProp = {
             firstName: context.user.firstName,
-            verificationLink: context.link,
+            verificationLink: `http://localhost:3000/auth/verify-email?verificationToken=${context.verificationToken}&userId=${context.user._id}`,
         };
 
         return await mailer.sendMail({
@@ -35,10 +35,10 @@ class MailService {
         });
     }
 
-    async sendPasswordResetEmail(context: { user: Pick<IUser, "firstName" | "email">; link: string }) {
+    async sendPasswordResetEmail(context: { user: Pick<IUser, "_id" | "firstName" | "email">; resetToken: string }) {
         const emailProp = {
             firstName: context.user.firstName,
-            resetLink: context.link,
+            resetLink: `http://localhost:3000/auth/reset-password?resetToken=${context.resetToken}&userId=${context.user._id}`,
         };
 
         return await mailer.sendMail({

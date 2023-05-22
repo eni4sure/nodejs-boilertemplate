@@ -6,6 +6,7 @@ import { Request } from "express";
 import CONFIGS from "@/configs";
 import UserModel from "@/models/user.model";
 import TokenModel from "@/models/token.model";
+import mailService from "@/services/mail.service";
 import CustomError from "@/utilities/custom-error";
 
 class AuthService {
@@ -125,11 +126,11 @@ class AuthService {
         const verificationToken = await new TokenModel({ userId: user._id }).save();
 
         if (isNewUser) {
-            // TODO: Send welcome email
-            console.log("welcome email", { verificationToken });
+            // send welcome user email
+            await mailService.sendWelcomeUserEmail({ user, verificationToken: verificationToken.token });
         } else {
-            // TODO: Send new email verification
-            console.log("new email verification", { verificationToken });
+            // send new verification link email
+            await mailService.sendVerificationLinkEmail({ user, verificationToken: verificationToken.token });
         }
 
         return;
@@ -154,8 +155,8 @@ class AuthService {
         // Create new token
         const resetToken = await new TokenModel({ userId: user._id }).save();
 
-        // TODO: Send password reset email
-        console.log("password reset email", { resetToken });
+        // send password reset email
+        await mailService.sendPasswordResetEmail({ user, resetToken: resetToken.token });
 
         return;
     }

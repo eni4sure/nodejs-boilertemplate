@@ -3,8 +3,8 @@ import CONFIGS from "@/configs";
 import mongoose from "mongoose";
 
 export interface IToken extends mongoose.Document {
-    code: string | null;
-    token: string | null;
+    code: string;
+    token: string ;
     userId: mongoose.Types.ObjectId;
     createdAt: Date;
 }
