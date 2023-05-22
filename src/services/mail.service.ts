@@ -1,6 +1,6 @@
 import mailer from "@/libraries/mailer";
 import { IUser } from "@/models/user.model";
-import { render } from "@react-email/render";
+import { render } from "@react-email/components";
 
 import WelcomeUserEmail from "@/email-templates/welcome-user";
 import VerificationLinkEmail from "@/email-templates/verification-link";
