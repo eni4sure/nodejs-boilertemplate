@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 export interface IToken extends mongoose.Document {
     code: string;
-    token: string ;
+    token: string;
     userId: mongoose.Types.ObjectId;
     createdAt: Date;
 }
