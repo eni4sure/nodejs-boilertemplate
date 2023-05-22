@@ -7,8 +7,8 @@ export interface IUser extends mongoose.Document {
     password?: string;
     emailVerified: boolean;
     accountDisabled: boolean;
-    lastActive: Date;
     role: "user" | "admin";
+    lastActive: Date;
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -44,17 +44,18 @@ const userSchema: mongoose.Schema<IUser> = new mongoose.Schema<IUser>(
             required: true,
             default: false,
         },
-        lastActive: {
-            type: Date,
-            required: true,
-            default: Date.now,
-        },
 
         role: {
             type: String,
             required: true,
             enum: ["user", "admin"],
             default: "user",
+        },
+
+        lastActive: {
+            type: Date,
+            required: true,
+            default: Date.now,
         },
     },
     {

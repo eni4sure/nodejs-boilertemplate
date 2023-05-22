@@ -59,7 +59,7 @@ class AuthService {
         if (!user) throw new CustomError("incorrect email or password", 400);
 
         // Check if password is correct
-        const validPassword = await bcryptjs.compare(data.password, user.password || "");
+        const validPassword = await bcryptjs.compare(data.body.password, user.password || "");
         if (!validPassword) throw new CustomError("incorrect email or password", 400);
 
         // Generate token
