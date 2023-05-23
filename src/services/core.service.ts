@@ -10,7 +10,9 @@ class CoreService {
             params: Joi.object({
                 key: Joi.string().required(),
             }),
-        }).validate({ params });
+        })
+            .options({ stripUnknown: true })
+            .validate({ params });
         if (error) throw new CustomError(error.message, 400);
 
         const config = await CoreModel.findOne({ key: data.params.key });

@@ -18,7 +18,9 @@ class AuthService {
                 email: Joi.string().email().required(),
                 password: Joi.string().required(),
             }),
-        }).validate({ body });
+        })
+            .options({ stripUnknown: true })
+            .validate({ body });
         if (error) throw new CustomError(error.message, 400);
 
         const emailExist = await UserModel.findOne({ email: data.body.email });
@@ -51,7 +53,9 @@ class AuthService {
                 email: Joi.string().email().required(),
                 password: Joi.string().required(),
             }),
-        }).validate({ body });
+        })
+            .options({ stripUnknown: true })
+            .validate({ body });
         if (error) throw new CustomError(error.message, 400);
 
         // Check if email exists
@@ -80,7 +84,9 @@ class AuthService {
                 // verificationCode is required if token is not provided
                 verificationCode: Joi.string().when("verificationToken", { is: Joi.exist(), then: Joi.required(), otherwise: Joi.optional() }),
             }),
-        }).validate({ body });
+        })
+            .options({ stripUnknown: true })
+            .validate({ body });
         if (error) throw new CustomError(error.message, 400);
 
         // Check if user exists
@@ -112,7 +118,9 @@ class AuthService {
         const { error, value: data } = Joi.object({
             userId: Joi.required(),
             isNewUser: Joi.boolean().required(),
-        }).validate({ userId, isNewUser });
+        })
+            .options({ stripUnknown: true })
+            .validate({ userId, isNewUser });
         if (error) throw new CustomError(error.message, 400);
 
         // Check if user exists
@@ -141,7 +149,9 @@ class AuthService {
             body: Joi.object({
                 email: Joi.string().email().required(),
             }),
-        }).validate({ body });
+        })
+            .options({ stripUnknown: true })
+            .validate({ body });
         if (error) throw new CustomError(error.message, 400);
 
         // Check if email exists by a user
@@ -168,7 +178,9 @@ class AuthService {
                 resetToken: Joi.string().required(),
                 newPassword: Joi.string().required(),
             }),
-        }).validate({ body });
+        })
+            .options({ stripUnknown: true })
+            .validate({ body });
         if (error) throw new CustomError(error.message, 400);
 
         // Check if user exists

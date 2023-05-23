@@ -12,7 +12,9 @@ class UserService {
             $currentUser: Joi.object({
                 _id: Joi.required(),
             }),
-        }).validate({ $currentUser });
+        })
+            .options({ stripUnknown: true })
+            .validate({ $currentUser });
         if (error) throw new CustomError(error.message, 400);
 
         return await UserModel.findOne({ _id: data.$currentUser._id });
@@ -27,7 +29,9 @@ class UserService {
             $currentUser: Joi.object({
                 _id: Joi.required(),
             }),
-        }).validate({ body, $currentUser });
+        })
+            .options({ stripUnknown: true })
+            .validate({ body, $currentUser });
         if (error) throw new CustomError(error.message, 400);
 
         // Check if user exists
@@ -46,7 +50,9 @@ class UserService {
             $currentUser: Joi.object({
                 _id: Joi.required(),
             }),
-        }).validate({ body, $currentUser });
+        })
+            .options({ stripUnknown: true })
+            .validate({ body, $currentUser });
         if (error) throw new CustomError(error.message, 400);
 
         // Check if user exists
