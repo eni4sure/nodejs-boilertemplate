@@ -116,7 +116,7 @@ class AuthService {
         if (error) throw new CustomError(error.message, 400);
 
         // Check if user exists
-        const user = await UserModel.findOne({ _id: data.body.userId });
+        const user = await UserModel.findOne({ _id: data.userId });
         if (!user) throw new CustomError("user does not exist", 400);
 
         // Check if email is already verified

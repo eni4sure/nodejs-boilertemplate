@@ -1,5 +1,5 @@
 import response from "@/utilities/response";
-import { Express, Request, Response } from "express";
+import { Express, NextFunction, Request, Response } from "express";
 
 const configureErrorMiddleware = (app: Express): Express => {
     // Handle 404 requests
@@ -8,7 +8,7 @@ const configureErrorMiddleware = (app: Express): Express => {
     });
 
     // Handle errors middleware
-    app.use((error: Error, _req: Request, res: Response) => {
+    app.use((error: Error, _req: Request, res: Response, next: NextFunction) => {
         // Handle custom errors
         if (error.name == "CustomError" && (error as any).status) {
             res.status((error as any).status).send(response(error.message, null, false));
@@ -24,6 +24,8 @@ const configureErrorMiddleware = (app: Express): Express => {
             // TODO: Advanced error logging
             res.status(500).send(response(error.message, null, false));
         }
+
+        next();
     });
 
     return app;
