@@ -10,7 +10,7 @@ class UserService {
     async getCurrentUser({ $currentUser }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             $currentUser: Joi.object({
-                _id: Joi.string().required(),
+                _id: Joi.required(),
             }),
         }).validate({ $currentUser });
         if (error) throw new CustomError(error.message, 400);
@@ -25,7 +25,7 @@ class UserService {
                 lastName: Joi.string().required(),
             }),
             $currentUser: Joi.object({
-                _id: Joi.string().required(),
+                _id: Joi.required(),
             }),
         }).validate({ body, $currentUser });
         if (error) throw new CustomError(error.message, 400);
@@ -44,7 +44,7 @@ class UserService {
                 newPassword: Joi.string().required(),
             }),
             $currentUser: Joi.object({
-                _id: Joi.string().required(),
+                _id: Joi.required(),
             }),
         }).validate({ body, $currentUser });
         if (error) throw new CustomError(error.message, 400);

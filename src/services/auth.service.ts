@@ -110,7 +110,7 @@ class AuthService {
 
     async requestEmailVerification(userId: string, isNewUser: boolean) {
         const { error, value: data } = Joi.object({
-            userId: Joi.string().required(),
+            userId: Joi.required(),
             isNewUser: Joi.boolean().required(),
         }).validate({ userId, isNewUser });
         if (error) throw new CustomError(error.message, 400);
