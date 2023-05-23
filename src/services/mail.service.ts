@@ -15,7 +15,7 @@ class MailService {
 
         return await mailer.sendMail({
             to: context.user.email,
-            subject: "Welcome to node-express-starter",
+            subject: "Welcome to nodejs-boilertemplate",
             text: render(WelcomeUserEmail(emailProp), { plainText: true }),
             html: render(WelcomeUserEmail(emailProp)),
         });
