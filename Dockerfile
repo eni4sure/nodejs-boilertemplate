@@ -5,9 +5,6 @@ RUN apk update && \
     apk upgrade && \
     apk add --no-cache git dumb-init
 
-# Set production environment
-ENV NODE_ENV=production
-
 # Set the working directory to /usr/src/app
 WORKDIR /usr/src/app
 
