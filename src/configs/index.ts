@@ -5,7 +5,7 @@ dotenv.config({
     path: path.resolve(__dirname, "..", "..", ".env"),
 });
 
-export default {
+const CONFIGS = {
     APP_NAME: "nodejs-boilertemplate",
     DEFAULT_EMAIL_FROM: "nodejs-boilertemplate <no-reply@nodejs-boilertemplate.com>",
 
@@ -35,3 +35,8 @@ export default {
         SECURE: process.env.MAILER_SECURE || false,
     },
 };
+
+// Uncomment below to check configs set
+// console.log("CONFIGS:", CONFIGS);
+
+export default CONFIGS;
