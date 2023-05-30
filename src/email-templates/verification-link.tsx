@@ -1,4 +1,5 @@
-import { Html, Text, Button, Heading, Container } from "@react-email/components";
+import { DefaultLayout } from "./components";
+import { Text, Button, Heading, Section } from "@react-email/components";
 
 interface EmailProp {
     firstName: string;
@@ -7,18 +8,18 @@ interface EmailProp {
 
 export default function Email({ firstName, verificationLink }: EmailProp) {
     return (
-        <Html lang="en">
-            <Container>
-                <Heading as="h2">Verify your Email</Heading>
+        <DefaultLayout>
+            <Section style={{ padding: "16px 16px 0px 16px" }}>
+                <Heading as="h3">Verify your Email</Heading>
 
                 <Text>Hi {firstName},</Text>
 
-                <Text>Click the button below to verfiy your account.</Text>
+                <Text>Click the link below to verfiy your account.</Text>
 
                 <Button href={verificationLink}>Verify Email</Button>
 
                 <Text>Thanks!</Text>
-            </Container>
-        </Html>
+            </Section>
+        </DefaultLayout>
     );
 }
