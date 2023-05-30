@@ -50,4 +50,14 @@ class MailService {
     }
 }
 
+// For testing purposes, uncomment code below and run `yarn start`
+// new MailService().sendWelcomeUserEmail({
+//     user: {
+//         _id: "5f9b3b1b9b3b1b9b3b1b9b3b",
+//         firstName: "John",
+//         email: "", // Add your email here to test
+//     },
+//     verificationToken: "5f9b3b1b9b3b1b9b3b1b9b3b",
+// });
+
 export default new MailService();
