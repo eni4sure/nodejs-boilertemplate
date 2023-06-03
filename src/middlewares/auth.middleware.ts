@@ -1,7 +1,7 @@
 import JWT from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
-import CONFIG from "@/configs";
+import { CONFIGS } from "@/configs";
 import User from "@/models/user.model";
 import CustomError from "@/utilities/custom-error";
 
@@ -11,14 +11,14 @@ import CustomError from "@/utilities/custom-error";
  * @param  {any[]} roles List of roles allowed to access the route
  */
 function auth(roles: string[] = []) {
-    roles = roles.length > 0 ? roles : CONFIG.ROLES.USER;
+    roles = roles.length > 0 ? roles : CONFIGS.ROLES.USER;
 
     return async (req: Request, _res: Response, next: NextFunction) => {
         if (!req.headers.authorization) throw new CustomError("unauthorized access: token not found", 401);
 
         const token: string = req.headers.authorization.split(" ")[1] || "";
 
-        const decoded: any = JWT.verify(token, CONFIG.JWT_SECRET, (err: any, decoded: any) => {
+        const decoded: any = JWT.verify(token, CONFIGS.JWT_SECRET, (err: any, decoded: any) => {
             if (err) throw new CustomError("-middleware/token-expired", 401);
             return decoded;
         });

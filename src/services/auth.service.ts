@@ -3,7 +3,7 @@ import JWT from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
 import { Request } from "express";
 
-import CONFIGS from "@/configs";
+import { CONFIGS } from "@/configs";
 import UserModel from "@/models/user.model";
 import TokenModel from "@/models/token.model";
 import mailService from "@/services/mail.service";

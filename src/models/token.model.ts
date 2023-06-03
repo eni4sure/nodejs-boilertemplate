@@ -1,6 +1,6 @@
 import crypto from "crypto";
-import CONFIGS from "@/configs";
 import mongoose from "mongoose";
+import { CONFIGS } from "@/configs";
 
 export interface IToken extends mongoose.Document {
     code: string;

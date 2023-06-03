@@ -1,4 +1,4 @@
-import CONFIGS from "@/configs";
+import { CONFIGS } from "@/configs";
 import { DefaultLayout } from "./components";
 import { Text, Button, Heading, Section } from "@react-email/components";
 

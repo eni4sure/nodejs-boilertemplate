@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-import CONFIG from "@/configs";
+import { CONFIGS } from "@/configs";
 
 const connectMongoDB = async () => {
     try {
-        mongoose.connect(CONFIG.MONGODB_URI);
+        mongoose.connect(CONFIGS.MONGODB_URI);
 
-        console.log(`:::> Connected to MongoDB database. ${CONFIG.MONGODB_URI}`);
+        console.log(`:::> Connected to MongoDB database. ${CONFIGS.MONGODB_URI}`);
     } catch (error) {
         console.error("<::: Couldn't connect to database", error);
     }

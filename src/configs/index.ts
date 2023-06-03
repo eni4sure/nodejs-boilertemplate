@@ -7,6 +7,7 @@ dotenv.config({
 
 const CONFIGS = {
     APP_NAME: "nodejs-boilertemplate",
+
     DEFAULT_EMAIL_FROM: "nodejs-boilertemplate <no-reply@nodejs-boilertemplate.com>",
 
     MONGODB_URI: process.env.MONGO_ATLAS_URI || "mongodb://127.0.0.1:27017/nodejs-boilertemplate",
@@ -39,4 +40,4 @@ const CONFIGS = {
 // Uncomment below to check configs set
 // console.log("CONFIGS:", CONFIGS);
 
-export default CONFIGS;
+export { CONFIGS };

@@ -2,7 +2,7 @@ import Joi from "joi";
 import bcryptjs from "bcryptjs";
 import { Request } from "express";
 
-import CONFIGS from "@/configs";
+import { CONFIGS } from "@/configs";
 import UserModel from "@/models/user.model";
 import CustomError from "@/utilities/custom-error";
 
