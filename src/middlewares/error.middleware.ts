@@ -25,7 +25,6 @@ const configureErrorMiddleware = (app: Express): Express => {
         } else if (["CastError", "JsonWebTokenError", "ValidationError", "SyntaxError", "MongooseError", "MongoError"].includes(error.name)) {
             res.status(400).send(response(error.message, null, false));
         } else {
-            // TODO: Error logging
             res.status(500).send(response(error.message, null, false));
         }
 
