@@ -1,4 +1,5 @@
 import JWT from "jsonwebtoken";
+import * as Sentry from "@sentry/node";
 import { Request, Response, NextFunction } from "express";
 
 import { CONFIGS } from "@/configs";
@@ -39,6 +40,9 @@ function auth(roles: string[] = []) {
 
         // Log lastActive for every request
         await User.findByIdAndUpdate(user._id, { lastActive: new Date() });
+
+        // Set user context for Sentry
+        Sentry.setUser({ id: user._id.toString(), email: user.email });
 
         // Attach user to request
         req.$currentUser = user;

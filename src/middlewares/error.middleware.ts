@@ -1,7 +1,11 @@
+import * as Sentry from "@sentry/node";
 import response from "@/utilities/response";
 import { Express, NextFunction, Request, Response } from "express";
 
 const configureErrorMiddleware = (app: Express): Express => {
+    // Sentry error handler
+    app.use(Sentry.Handlers.errorHandler());
+
     // Handle 404 requests
     app.use("*", (_req: Request, res: Response) => {
         res.status(404).send(response("Invalid request", null, false));

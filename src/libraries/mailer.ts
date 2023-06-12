@@ -1,17 +1,15 @@
 import nodemailer from "nodemailer";
-
 import { CONFIGS } from "@/configs";
-import CustomError from "@/utilities/custom-error";
 
 class Mailer {
     private static instance: Mailer;
     private transporter: nodemailer.Transporter;
 
     private constructor() {
-        if (!CONFIGS.MAILER.SMTP_HOST) throw new CustomError("SMTP_HOST config not found");
-        if (!CONFIGS.MAILER.SMTP_PORT) throw new CustomError("SMTP_PORT config not found");
-        if (!CONFIGS.MAILER.SMTP_USER) throw new CustomError("SMTP_USER config not found");
-        if (!CONFIGS.MAILER.SMTP_PASSWORD) throw new CustomError("SMTP_PASSWORD config not found");
+        if (!CONFIGS.MAILER.SMTP_HOST) throw new Error("SMTP_HOST config not found");
+        if (!CONFIGS.MAILER.SMTP_PORT) throw new Error("SMTP_PORT config not found");
+        if (!CONFIGS.MAILER.SMTP_USER) throw new Error("SMTP_USER config not found");
+        if (!CONFIGS.MAILER.SMTP_PASSWORD) throw new Error("SMTP_PASSWORD config not found");
 
         // To change the transport, e.g Amazon SES, etc...
         // check https://nodemailer.com/transports/

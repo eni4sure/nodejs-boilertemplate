@@ -35,6 +35,10 @@ const CONFIGS = {
         SMTP_PASSWORD: process.env.MAILER_SMTP_PASSWORD,
         SECURE: process.env.MAILER_SECURE || false,
     },
+
+    SENTRY: {
+        DSN: process.env.SENTRY_DSN,
+    },
 };
 
 // Uncomment below to check configs set
