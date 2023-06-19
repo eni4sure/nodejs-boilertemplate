@@ -26,6 +26,8 @@
     "checkJs": true,
 
     /* Emit */
+    "sourceMap": true, // Enable source maps for improved sentry
+    "sourceRoot": "/", // Set source root to root of project for improved sentry
     "declaration": false,
     "declarationMap": false,
     "outDir": "./dist",
