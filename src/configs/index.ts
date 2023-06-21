@@ -25,6 +25,7 @@ const CONFIGS = {
     },
 
     URL: {
+        AUTH_BASE_URL: process.env.AUTH_BASE_URL || "http://localhost:3001",
         LANDING_BASE_URL: process.env.LANDING_BASE_URL || "http://localhost:3000",
     },
 

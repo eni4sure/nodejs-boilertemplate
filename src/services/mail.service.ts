@@ -1,3 +1,4 @@
+import { CONFIGS } from "@/configs";
 import mailer from "@/libraries/mailer";
 import { IUser } from "@/models/user.model";
 import { render } from "@react-email/components";
@@ -10,7 +11,7 @@ class MailService {
     async sendWelcomeUserEmail(context: { user: Pick<IUser, "_id" | "firstName" | "email">; verificationToken: string }) {
         const emailProp = {
             firstName: context.user.firstName,
-            verificationLink: `http://localhost:3000/auth/verify-email?verificationToken=${context.verificationToken}&userId=${context.user._id}`,
+            verificationLink: `${CONFIGS.URL.AUTH_BASE_URL}/auth/verify-email?verificationToken=${context.verificationToken}&userId=${context.user._id}`,
         };
 
         return await mailer.sendMail({
@@ -24,7 +25,7 @@ class MailService {
     async sendVerificationLinkEmail(context: { user: Pick<IUser, "_id" | "firstName" | "email">; verificationToken: string }) {
         const emailProp = {
             firstName: context.user.firstName,
-            verificationLink: `http://localhost:3000/auth/verify-email?verificationToken=${context.verificationToken}&userId=${context.user._id}`,
+            verificationLink: `${CONFIGS.URL.AUTH_BASE_URL}/auth/verify-email?verificationToken=${context.verificationToken}&userId=${context.user._id}`,
         };
 
         return await mailer.sendMail({
@@ -38,7 +39,7 @@ class MailService {
     async sendPasswordResetEmail(context: { user: Pick<IUser, "_id" | "firstName" | "email">; resetToken: string }) {
         const emailProp = {
             firstName: context.user.firstName,
-            resetLink: `http://localhost:3000/auth/reset-password?resetToken=${context.resetToken}&userId=${context.user._id}`,
+            resetLink: `${CONFIGS.URL.AUTH_BASE_URL}/auth/reset-password?resetToken=${context.resetToken}&userId=${context.user._id}`,
         };
 
         return await mailer.sendMail({
