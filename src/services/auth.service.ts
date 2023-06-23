@@ -80,10 +80,10 @@ class AuthService {
             body: Joi.object({
                 userId: Joi.string().required(),
                 // verificationToken is required if code is not provided
-                verificationToken: Joi.string().when("verificationCode", { is: Joi.exist(), then: Joi.optional(), otherwise: Joi.required() }),
+                verificationToken: Joi.string(),
                 // verificationCode is required if token is not provided
-                verificationCode: Joi.string().when("verificationToken", { is: Joi.exist(), then: Joi.required(), otherwise: Joi.optional() }),
-            }),
+                verificationCode: Joi.string(),
+            }).xor("verificationToken", "verificationCode"),
         })
             .options({ stripUnknown: true })
             .validate({ body });
