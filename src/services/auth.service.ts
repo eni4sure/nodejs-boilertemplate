@@ -66,6 +66,9 @@ class AuthService {
         const validPassword = await bcryptjs.compare(data.body.password, user.password || "");
         if (!validPassword) throw new CustomError("incorrect email or password", 400);
 
+        // check if acount is disabled
+        if (user.accountDisabled === true) throw new CustomError("account has been disabled, if you believe this is a mistake kindly contact support", 409);
+
         // Generate token
         const token = JWT.sign({ _id: user._id, role: user.role, email: user.email }, CONFIGS.JWT_SECRET, { expiresIn: CONFIGS.JWT_EXPIRES_IN });
 
