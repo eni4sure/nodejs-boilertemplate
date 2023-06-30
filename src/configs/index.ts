@@ -17,7 +17,7 @@ const CONFIGS = {
     JWT_SECRET: process.env.JWT_SECRET || "000-12345-000",
     JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || "1h",
 
-    TOKEN_EXPIRY_DURATION: process.env.TOKEN_EXPIRY_DURATION || 900, // 15 minutes
+    TOKEN_EXPIRY_DURATION: Number(process.env.TOKEN_EXPIRY_DURATION) || 900, // 15 minutes
 
     ROLES: {
         USER: ["user", "admin"],
