@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import ms from "ms";
-import path from "path";
 import dotenv from "dotenv";
 
-dotenv.config({
-    path: path.resolve(__dirname, "..", "..", ".env"),
-});
+dotenv.config();
 
 const CONFIGS = {
     APP_NAME: "nodejs-boilertemplate",
