@@ -27,7 +27,7 @@ const configurePreRouteMiddleware = (app: Express): Express => {
         ],
 
         // Set tracesSampleRate to 1.0 to capture 100%
-        tracesSampleRate: 1.0,
+        tracesSampleRate: 0.4,
     });
 
     // Sentry request handler of transactions for performance monitoring.
