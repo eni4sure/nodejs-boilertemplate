@@ -42,4 +42,4 @@ The same prettier config will be used for code formatting. It should be automati
 
 ---
 
-*official policy: it is fOrBiddEn to bring down production with your PRs !!*
+_official policy: it is fOrBiddEn to bring down production with your PRs !!_

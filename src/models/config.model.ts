@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
-export interface ICore extends mongoose.Document {
+export interface IConfig extends mongoose.Document {
     key: string;
     value: mongoose.Schema.Types.Mixed;
-    createdAt?: Date;
+    expiresAt?: Date;
     updatedAt?: Date;
 }
 
-const coreSchema = new mongoose.Schema<ICore>(
+const configSchema = new mongoose.Schema<IConfig>(
     {
         key: {
             type: String,
@@ -32,4 +32,4 @@ mongoose.Query.prototype.setOptions = function () {
     return this;
 };
 
-export default mongoose.model<ICore>("core", coreSchema);
+export default mongoose.model<IConfig>("config", configSchema);

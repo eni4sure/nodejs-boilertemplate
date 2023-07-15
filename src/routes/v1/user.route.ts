@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { CONFIGS } from "@/configs";
-import UserCtrl from "@/controllers/user.controller";
 import authGuard from "@/middlewares/auth.middleware";
+import UserCtrl from "@/controllers/v1/user.controller";
 
 const router: Router = Router();
 

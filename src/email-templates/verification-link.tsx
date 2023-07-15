@@ -1,4 +1,4 @@
-import { DefaultLayout } from "./components";
+import DefaultLayout from "@/email-templates/layouts/default-layout";
 import { Text, Button, Heading, Section } from "@react-email/components";
 
 interface EmailProp {

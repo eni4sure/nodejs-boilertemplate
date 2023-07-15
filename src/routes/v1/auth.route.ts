@@ -1,5 +1,5 @@
 import { Router } from "express";
-import AuthCtrl from "@/controllers/auth.controller";
+import AuthCtrl from "@/controllers/v1/auth.controller";
 
 const router: Router = Router();
 
@@ -12,6 +12,10 @@ router.post("/verify-email", AuthCtrl.verifyEmail);
 router.post("/request-email-verification", AuthCtrl.requestEmailVerification);
 
 router.post("/request-password-reset", AuthCtrl.requestPasswordReset);
+
+router.post("/refresh-tokens", AuthCtrl.refreshTokens);
+
+router.post("/logout", AuthCtrl.logout);
 
 router.patch("/reset-password", AuthCtrl.resetPassword);
 

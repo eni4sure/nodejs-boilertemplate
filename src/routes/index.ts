@@ -1,27 +1,16 @@
 import express, { Router, Request, Response } from "express";
 
-import authRoutes from "@/routes/auth.route";
-import coreRoutes from "@/routes/core.route";
-import userRoutes from "@/routes/user.route";
+import v1Routes from "@/routes/v1";
+import configRoutes from "@/routes/config.route";
 
 const router: Router = express.Router();
 
-router.use("/auth", authRoutes);
+router.use("/v1", v1Routes);
 
-router.use("/core", coreRoutes);
-
-router.use("/users", userRoutes);
+router.use("/config", configRoutes);
 
 router.get("/", (_req: Request, res: Response) => {
     return res.status(200).json({ message: "Hello world from nodejs-boilertemplate !!" });
 });
-
-// playground: can be used to test routes and other stuffs in development mode
-if (process.env.NODE_ENV === "development") {
-    router.use("/playground", async (_req: Request, res: Response) => {
-        const results: any = {};
-        res.json(results);
-    });
-}
 
 export default router;

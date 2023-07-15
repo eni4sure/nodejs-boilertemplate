@@ -1,68 +1,59 @@
 {
-  "$schema": "http://json.schemastore.org/tsconfig",
-  "compilerOptions": {
-    /* Language and Environment */
-    "target": "es2016",
-    "lib": ["DOM", "ESNext"],
-    "jsx": "react-jsx",
-    "moduleDetection": "auto",
+    "$schema": "http://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        /* Language and Environment */
+        "target": "es2016",
+        "lib": ["DOM", "ESNext"],
+        "jsx": "react-jsx",
+        "moduleDetection": "auto",
 
-    /* Modules */
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "rootDir": "./src",
-    "typeRoots": [
-      "./src/@types",
-      "./node_modules/@types"
-    ],
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["./src/*"]
+        /* Modules */
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "rootDir": "./",
+        "typeRoots": ["./src/@types", "./node_modules/@types"],
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+        "resolveJsonModule": true,
+   
+        /* JavaScript Support */
+        "allowJs": true,
+        "checkJs": true,
+        /* Emit */
+        "sourceMap": true, // Enable source maps for improved sentry
+        // "sourceRoot": "/", // Set source root to root of project for improved sentry
+        "declaration": false,
+        "declarationMap": false,
+        "outDir": "./dist",
+        "removeComments": true,
+        /* Interop Constraints */
+        "isolatedModules": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+     
+        /* Type Checking */
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+        "noImplicitOverride": true,
+        "allowUnreachableCode": false,
+
+        /* Completeness */
+        "skipLibCheck": true
     },
-    "resolveJsonModule": true,
-
-    /* JavaScript Support */
-    "allowJs": true,
-    "checkJs": true,
-
-    /* Emit */
-    "sourceMap": true, // Enable source maps for improved sentry
-    "sourceRoot": "/", // Set source root to root of project for improved sentry
-    "declaration": false,
-    "declarationMap": false,
-    "outDir": "./dist",
-    "removeComments": true,
-
-    /* Interop Constraints */
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-
-    /* Type Checking */
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "allowUnreachableCode": false,
-
-    /* Completeness */
-    "skipLibCheck": true
-  },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "include": ["./src/**/*", "./scripts/**/*"],
+    "exclude": ["node_modules"]
 }

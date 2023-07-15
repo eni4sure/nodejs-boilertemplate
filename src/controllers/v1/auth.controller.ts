@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import response from "@/utilities/response";
-import AuthService from "@/services/auth.service";
+import AuthService from "@/services/v1/auth.service";
 
 class AuthController {
     async register(req: Request, res: Response) {
@@ -32,6 +32,16 @@ class AuthController {
     async resetPassword(req: Request, res: Response) {
         const result = await AuthService.resetPassword({ ...req });
         res.status(200).send(response("password updated", result));
+    }
+
+    async refreshTokens(req: Request, res: Response) {
+        const result = await AuthService.refreshTokens({ ...req });
+        res.status(200).send(response("tokens refreshed", result));
+    }
+
+    async logout(req: Request, res: Response) {
+        const result = await AuthService.logout({ ...req });
+        res.status(200).send(response("user logged out", result));
     }
 }
 

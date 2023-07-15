@@ -1,13 +1,13 @@
 import Joi from "joi";
-import JWT from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
 import { Request } from "express";
-
 import { CONFIGS } from "@/configs";
+import * as Sentry from "@sentry/node";
+
 import UserModel from "@/models/user.model";
-import TokenModel from "@/models/token.model";
 import mailService from "@/services/mail.service";
 import CustomError from "@/utilities/custom-error";
+import TokenService from "@/services/token.service";
 
 class AuthService {
     async register({ body }: Partial<Request>) {
@@ -39,7 +39,7 @@ class AuthService {
         const user = await new UserModel(context).save();
 
         // Generate token
-        const token = JWT.sign({ _id: user._id, role: user.role, email: user.email }, CONFIGS.JWT_SECRET, { expiresIn: CONFIGS.JWT_EXPIRES_IN });
+        const token = await TokenService.generateAuthTokens({ _id: user._id, role: user.role, email: user.email });
 
         // Send email verification
         await this.requestEmailVerification(user._id, true);
@@ -70,7 +70,7 @@ class AuthService {
         if (user.accountDisabled === true) throw new CustomError("account has been disabled, if you believe this is a mistake kindly contact support", 409);
 
         // Generate token
-        const token = JWT.sign({ _id: user._id, role: user.role, email: user.email }, CONFIGS.JWT_SECRET, { expiresIn: CONFIGS.JWT_EXPIRES_IN });
+        const token = await TokenService.generateAuthTokens({ _id: user._id, role: user.role, email: user.email });
 
         // Remove password from response
         delete user.password;
@@ -99,20 +99,11 @@ class AuthService {
         // Check if email is already verified
         if (user.emailVerified) throw new CustomError("email is already verified", 400);
 
-        let validTokenCode = null;
-
-        // if verificationCode, check if code is valid
-        if (data.body.verificationCode) validTokenCode = await TokenModel.findOne({ code: data.body.verificationCode, userId: user._id });
-        // if verificationToken, check if token is valid
-        if (data.body.verificationToken) validTokenCode = await TokenModel.findOne({ token: data.body.verificationToken, userId: user._id });
-
-        if (!validTokenCode) throw new CustomError("invalid or expired token code", 400);
+        const isValidToken = await TokenService.verifyToken({ token: data.body.verificationToken, code: data.body.verificationCode, userId: user._id, tokenType: "email-verification" });
+        if (!isValidToken) throw new CustomError("invalid or expired token. Kindly request a new verification link", 400);
 
         // Update user
         await UserModel.updateOne({ _id: user._id }, { $set: { emailVerified: true } });
-
-        // Delete token
-        await TokenModel.deleteOne({ _id: validTokenCode._id });
 
         return;
     }
@@ -134,7 +125,7 @@ class AuthService {
         if (user.emailVerified) throw new CustomError("email is already verified", 400);
 
         // Create new token
-        const verificationToken = await new TokenModel({ userId: user._id }).save();
+        const verificationToken = await TokenService.generateToken({ userId: user._id, tokenType: "email-verification" });
 
         if (isNewUser) {
             // send welcome user email
@@ -162,16 +153,46 @@ class AuthService {
         // Don't throw error if user doesn't exist, just return null - so hackers don't exploit this route to know emails on the platform
         if (!user) return;
 
-        // Delete any previous token
-        await TokenModel.deleteOne({ userId: user._id });
-
-        // Create new token
-        const resetToken = await new TokenModel({ userId: user._id }).save();
+        const resetToken = await TokenService.generateToken({ userId: user._id, tokenType: "password-reset" });
 
         // send password reset email
         await mailService.sendPasswordResetEmail({ user, resetToken: resetToken.token });
 
         return;
+    }
+
+    async refreshTokens({ body }: Partial<Request>) {
+        const { error, value: data } = Joi.object({
+            body: Joi.object({
+                refreshToken: Joi.required(),
+            }),
+        })
+            .options({ stripUnknown: true })
+            .validate({ body });
+        if (error) throw new CustomError(error.message, 400);
+
+        // verify and refresh tokens
+        const refreshedTokens = await TokenService.refreshAuthTokens(data.body.refreshToken);
+
+        return refreshedTokens;
+    }
+
+    async logout({ body }: Partial<Request>) {
+        const { error, value: data } = Joi.object({
+            body: Joi.object({
+                refreshToken: Joi.string().allow(null).optional(),
+            }),
+        })
+            .options({ stripUnknown: true })
+            .validate({ body });
+        if (error) throw new CustomError(error.message, 400);
+
+        // revoke refresh token
+        await TokenService.revokeRefreshToken(data.body.refreshToken).catch((error) => {
+            Sentry.captureException(new Error(error), { extra: { body: data.body } });
+        });
+
+        return true;
     }
 
     async resetPassword({ body }: Partial<Request>) {
@@ -190,16 +211,12 @@ class AuthService {
         const user = await UserModel.findOne({ _id: data.body.userId });
         if (!user) throw new CustomError("user does not exist", 400);
 
-        // Check if token is valid
-        const validResetToken = await TokenModel.findOne({ token: data.body.resetToken, userId: user._id });
-        if (!validResetToken) throw new CustomError("invalid or expired password reset token", 400);
+        const isValidToken = await TokenService.verifyToken({ token: data.body.resetToken, userId: user._id, tokenType: "password-reset" });
+        if (!isValidToken) throw new CustomError("invalid or expired token. Kindly make a new password reset request", 400);
 
         // Hash new password and update user
         const passwordHash = await bcryptjs.hash(data.body.newPassword, CONFIGS.BCRYPT_SALT);
         await UserModel.updateOne({ _id: user._id }, { $set: { password: passwordHash } });
-
-        // Delete token
-        await TokenModel.deleteOne({ _id: validResetToken._id });
 
         return;
     }

@@ -58,4 +58,4 @@ ENV PORT=80
 EXPOSE 80
 
 # Start the application
-CMD ["dumb-init", "node", "dist/index.js"]
+CMD ["dumb-init", "node", "dist/src/index.js"]

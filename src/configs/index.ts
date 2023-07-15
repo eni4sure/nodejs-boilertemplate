@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import ms from "ms";
 import path from "path";
 import dotenv from "dotenv";
 
@@ -15,9 +17,11 @@ const CONFIGS = {
     BCRYPT_SALT: Number(process.env.BCRYPT_SALT) || 10,
 
     JWT_SECRET: process.env.JWT_SECRET || "000-12345-000",
-    JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || "1h",
 
-    TOKEN_EXPIRY_DURATION: Number(process.env.TOKEN_EXPIRY_DURATION) || 900, // 15 minutes
+    ACCESS_TOKEN_JWT_EXPIRES_IN: process.env.ACCESS_TOKEN_JWT_EXPIRES_IN ? ms(process.env.ACCESS_TOKEN_JWT_EXPIRES_IN) : ms("1h"),
+    REFRESH_TOKEN_JWT_EXPIRES_IN: process.env.REFRESH_TOKEN_JWT_EXPIRES_IN ? ms(process.env.REFRESH_TOKEN_JWT_EXPIRES_IN) : ms("30d"),
+
+    DEFAULT_DB_TOKEN_EXPIRY_DURATION: process.env.DEFAULT_DB_TOKEN_EXPIRY_DURATION ? ms(process.env.DEFAULT_DB_TOKEN_EXPIRY_DURATION) : ms("15m"),
 
     ROLES: {
         USER: ["user", "admin"],

@@ -1,35 +1,44 @@
-import crypto from "crypto";
 import mongoose from "mongoose";
 import { CONFIGS } from "@/configs";
 
 export interface IToken extends mongoose.Document {
-    code: string;
-    token: string;
+    code: string | null;
+    token: string | null;
+    type: "email-verification" | "password-reset" | "refresh-token";
     userId: mongoose.Types.ObjectId;
-    createdAt: Date;
+    expiresAt: Date;
 }
 
 const tokenSchema: mongoose.Schema<IToken> = new mongoose.Schema<IToken>({
     code: {
         type: String,
-        required: true,
-        default: () => crypto.randomBytes(3).toString("hex").toUpperCase(),
+        required: false,
+        default: null,
     },
+
     token: {
         type: String,
         required: false,
-        default: () => crypto.randomBytes(32).toString("hex"),
+        default: null,
     },
+
+    type: {
+        type: String,
+        required: true,
+        enum: ["email-verification", "password-reset", "refresh-token"],
+    },
+
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "user",
     },
-    createdAt: {
+
+    expiresAt: {
         type: Date,
         required: true,
         default: Date.now,
-        expires: CONFIGS.TOKEN_EXPIRY_DURATION,
+        expires: CONFIGS.DEFAULT_DB_TOKEN_EXPIRY_DURATION,
     },
 });
 

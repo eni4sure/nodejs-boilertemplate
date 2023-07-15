@@ -1,5 +1,5 @@
 import { CONFIGS } from "@/configs";
-import { DefaultLayout } from "./components";
+import DefaultLayout from "@/email-templates/layouts/default-layout";
 import { Text, Button, Heading, Section } from "@react-email/components";
 
 interface EmailProp {
@@ -16,7 +16,7 @@ export default function Email({ firstName, resetLink }: EmailProp) {
                 <Text>Hi {firstName}, ⚡️</Text>
 
                 <Text>
-                    Click the link below to reset your password. This link expires in <b>{(Number(CONFIGS.TOKEN_EXPIRY_DURATION) / 60).toFixed(0)} minutes.</b>
+                    Click the link below to reset your password. This link expires in <b>{(Number(CONFIGS.DEFAULT_DB_TOKEN_EXPIRY_DURATION) / 60).toFixed(0)} minutes.</b>
                 </Text>
 
                 <Button href={resetLink}>Reset your password</Button>
