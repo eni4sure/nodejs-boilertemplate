@@ -4,7 +4,7 @@
     "private": true,
     "author": "Eniola Osabiya <eosabiya@gmail.com>",
     "scripts": {
-        "build": "rm -r dist/ && npx tsc && tsc-alias",
+        "build": "npx tsc && tsc-alias",
         "start": "yarn build && node dist/src/index.js",
         "dev": "nodemon --ext 'ts, tsx, json' --watch src --exec ts-node -r tsconfig-paths/register src/index.ts",
         "lint": "eslint src/**/*.{ts,tsx}",
