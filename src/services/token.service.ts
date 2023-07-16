@@ -19,8 +19,8 @@ class TokenService {
         await new TokenModel({ token: hashedRefreshToken, type: "refresh-token", userId: user._id, expiresAt: Date.now() + CONFIGS.REFRESH_TOKEN_JWT_EXPIRES_IN }).save();
 
         // Generate access token and refresh token JWT
-        const accessToken = JWT.sign({ _id: user._id, role: user.role, email: user.email }, CONFIGS.JWT_SECRET, { expiresIn: CONFIGS.ACCESS_TOKEN_JWT_EXPIRES_IN });
-        const refreshTokenJWT = JWT.sign({ _id: user._id, refreshToken }, CONFIGS.JWT_SECRET, { expiresIn: CONFIGS.REFRESH_TOKEN_JWT_EXPIRES_IN });
+        const accessToken = JWT.sign({ _id: user._id, role: user.role, email: user.email }, CONFIGS.JWT_SECRET, { expiresIn: CONFIGS.ACCESS_TOKEN_JWT_EXPIRES_IN / 1000 });
+        const refreshTokenJWT = JWT.sign({ _id: user._id, refreshToken }, CONFIGS.JWT_SECRET, { expiresIn: CONFIGS.REFRESH_TOKEN_JWT_EXPIRES_IN / 1000 });
 
         return { accessToken, refreshToken: refreshTokenJWT };
     }
