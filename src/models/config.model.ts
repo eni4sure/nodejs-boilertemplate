@@ -20,7 +20,7 @@ const configSchema = new mongoose.Schema<IConfig>(
         },
     },
     {
-        timestamps: true,
+        timestamps: false,
     }
 );
 

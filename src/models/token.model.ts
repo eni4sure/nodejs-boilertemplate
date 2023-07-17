@@ -9,38 +9,43 @@ export interface IToken extends mongoose.Document {
     expiresAt: Date;
 }
 
-const tokenSchema: mongoose.Schema<IToken> = new mongoose.Schema<IToken>({
-    code: {
-        type: String,
-        required: false,
-        default: null,
-    },
+const tokenSchema: mongoose.Schema<IToken> = new mongoose.Schema<IToken>(
+    {
+        code: {
+            type: String,
+            required: false,
+            default: null,
+        },
 
-    token: {
-        type: String,
-        required: false,
-        default: null,
-    },
+        token: {
+            type: String,
+            required: false,
+            default: null,
+        },
 
-    type: {
-        type: String,
-        required: true,
-        enum: ["email-verification", "password-reset", "refresh-token"],
-    },
+        type: {
+            type: String,
+            required: true,
+            enum: ["email-verification", "password-reset", "refresh-token"],
+        },
 
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: "user",
-    },
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "user",
+        },
 
-    expiresAt: {
-        type: Date,
-        required: true,
-        default: Date.now,
-        expires: CONFIGS.DEFAULT_DB_TOKEN_EXPIRY_DURATION,
+        expiresAt: {
+            type: Date,
+            required: true,
+            default: Date.now,
+            expires: CONFIGS.DEFAULT_DB_TOKEN_EXPIRY_DURATION,
+        },
     },
-});
+    {
+        timestamps: false,
+    }
+);
 
 // Set mongoose options to have lean turned on by default
 mongoose.Query.prototype.setOptions = function () {
