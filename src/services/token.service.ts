@@ -31,11 +31,11 @@ class TokenService {
 
         // Find refresh tokens for user in database
         const refreshTokens = await TokenModel.find({ userId: decodedRefreshToken._id, type: "refresh-token" });
-        if (refreshTokens.length === 0) throw new CustomError("invalid / expired refresh token", 401);
+        if (refreshTokens.length === 0) throw new CustomError("-invalid-expired-token", 401);
 
         // Get user from database
         const user = await UserModel.findOne({ _id: decodedRefreshToken._id });
-        if (!user) throw new CustomError("invalid user", 401);
+        if (!user) throw new CustomError("-invalid-expired-token", 401);
 
         // for each refresh token, check if it matches the decoded refresh token
         for (const token of refreshTokens) {
@@ -50,7 +50,7 @@ class TokenService {
             }
         }
 
-        throw new CustomError("invalid / expired refresh token", 401);
+        throw new CustomError("-invalid-expired-token", 401);
     }
 
     async revokeRefreshToken(refreshTokenJWT: string) {
