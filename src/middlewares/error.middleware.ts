@@ -22,7 +22,7 @@ const configureErrorMiddleware = (app: Express): Express => {
             res.status(400).send(response(`${field} already exists`, null, false));
         } else if (error.name == "CastError") {
             res.status(400).send(response("resource does not exist", null, false));
-        } else if (["CastError", "JsonWebTokenError", "ValidationError", "SyntaxError", "MongooseError", "MongoError"].includes(error.name)) {
+        } else if (["JsonWebTokenError", "ValidationError", "SyntaxError", "MongooseError", "MongoError"].includes(error.name)) {
             res.status(400).send(response(error.message, null, false));
         } else {
             res.status(500).send(response(error.message, null, false));
