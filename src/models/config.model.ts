@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export interface IConfig extends mongoose.Document {
     key: string;
     value: mongoose.Schema.Types.Mixed;
-    expiresAt?: Date;
+    createdAt?: Date;
     updatedAt?: Date;
 }
 
@@ -11,8 +11,8 @@ const configSchema = new mongoose.Schema<IConfig>(
     {
         key: {
             type: String,
-            unique: true,
             required: true,
+            unique: true,
         },
         value: {
             type: mongoose.Schema.Types.Mixed,
