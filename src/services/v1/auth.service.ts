@@ -13,10 +13,10 @@ class AuthService {
     async register({ body }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                firstName: Joi.string().required(),
-                lastName: Joi.string().required(),
-                email: Joi.string().email().required(),
-                password: Joi.string().required(),
+                firstName: Joi.string().trim().required().label("first name"),
+                lastName: Joi.string().trim().required().label("last name"),
+                email: Joi.string().trim().email().required().label("email"),
+                password: Joi.string().required().label("password"),
             }),
         })
             .options({ stripUnknown: true })
@@ -50,8 +50,8 @@ class AuthService {
     async login({ body }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                email: Joi.string().email().required(),
-                password: Joi.string().required(),
+                email: Joi.string().trim().email().required().label("email"),
+                password: Joi.string().required().label("password"),
             }),
         })
             .options({ stripUnknown: true })
@@ -81,11 +81,11 @@ class AuthService {
     async verifyEmail({ body }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                userId: Joi.string().required(),
+                userId: Joi.string().required().label("user id"),
                 // verificationToken is required if code is not provided
-                verificationToken: Joi.string(),
+                verificationToken: Joi.string().trim().label("verification token"),
                 // verificationCode is required if token is not provided
-                verificationCode: Joi.string(),
+                verificationCode: Joi.string().trim().label("verification code"),
             }).xor("verificationToken", "verificationCode"),
         })
             .options({ stripUnknown: true })
@@ -110,7 +110,7 @@ class AuthService {
 
     async requestEmailVerification(userId: string, isNewUser: boolean) {
         const { error, value: data } = Joi.object({
-            userId: Joi.required(),
+            userId: Joi.required().label("user id"),
             isNewUser: Joi.boolean().required(),
         })
             .options({ stripUnknown: true })
@@ -141,7 +141,7 @@ class AuthService {
     async requestPasswordReset({ body }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                email: Joi.string().email().required(),
+                email: Joi.string().trim().email().required().label("email"),
             }),
         })
             .options({ stripUnknown: true })
@@ -164,7 +164,7 @@ class AuthService {
     async refreshTokens({ body }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                refreshToken: Joi.required(),
+                refreshToken: Joi.required().label("refresh token"),
             }),
         })
             .options({ stripUnknown: true })
@@ -180,7 +180,7 @@ class AuthService {
     async logout({ body }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                refreshToken: Joi.string().allow(null).optional(),
+                refreshToken: Joi.string().allow(null).optional().label("refresh token"),
             }),
         })
             .options({ stripUnknown: true })
@@ -198,9 +198,9 @@ class AuthService {
     async resetPassword({ body }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                userId: Joi.string().required(),
-                resetToken: Joi.string().required(),
-                newPassword: Joi.string().required(),
+                userId: Joi.string().required().label("user id"),
+                resetToken: Joi.string().required().label("reset token"),
+                newPassword: Joi.string().required().label("new password"),
             }),
         })
             .options({ stripUnknown: true })
