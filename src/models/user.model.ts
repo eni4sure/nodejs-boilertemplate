@@ -27,6 +27,11 @@ const userSchema: mongoose.Schema<IUser> = new mongoose.Schema<IUser>(
             type: String,
             required: true,
             unique: true,
+            lowercase: true,
+            collation: {
+                locale: "en",
+                strength: 2,
+            },
         },
         password: {
             type: String,
@@ -71,4 +76,4 @@ mongoose.Query.prototype.setOptions = function () {
     return this;
 };
 
-export default mongoose.model<IUser>("user", userSchema);
+export default mongoose.model<IUser>("users", userSchema);

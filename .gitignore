@@ -10,3 +10,6 @@ public/uploads/*
 
 # exclude files in dist
 dist/
+
+# Sentry Config File
+.sentryclirc

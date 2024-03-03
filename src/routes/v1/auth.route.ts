@@ -13,10 +13,10 @@ router.post("/request-email-verification", AuthCtrl.requestEmailVerification);
 
 router.post("/request-password-reset", AuthCtrl.requestPasswordReset);
 
+router.patch("/reset-password", AuthCtrl.resetPassword);
+
 router.post("/refresh-tokens", AuthCtrl.refreshTokens);
 
 router.post("/logout", AuthCtrl.logout);
-
-router.patch("/reset-password", AuthCtrl.resetPassword);
 
 export default router;

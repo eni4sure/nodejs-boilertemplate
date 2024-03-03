@@ -3,10 +3,12 @@ import bcryptjs from "bcryptjs";
 import { Request } from "express";
 import { CONFIGS } from "@/configs";
 import * as Sentry from "@sentry/node";
+import { isValidObjectId } from "mongoose";
 
 import UserModel from "@/models/user.model";
 import mailService from "@/services/mail.service";
 import CustomError from "@/utilities/custom-error";
+import { TOKEN_TYPES } from "@/models/token.model";
 import TokenService from "@/services/token.service";
 
 class AuthService {
@@ -15,7 +17,7 @@ class AuthService {
             body: Joi.object({
                 firstName: Joi.string().trim().required().label("first name"),
                 lastName: Joi.string().trim().required().label("last name"),
-                email: Joi.string().trim().email().required().label("email"),
+                email: Joi.string().trim().email().lowercase().required().label("email"),
                 password: Joi.string().required().label("password"),
             }),
         })
@@ -41,8 +43,11 @@ class AuthService {
         // Generate token
         const token = await TokenService.generateAuthTokens({ _id: user._id, role: user.role, email: user.email });
 
-        // Send email verification
-        await this.requestEmailVerification(user._id, true);
+        // Remove password from response
+        user.password = undefined;
+
+        // Send email verification code
+        await this.requestEmailVerification({ body: { userId: user._id } });
 
         return { user, token };
     }
@@ -50,7 +55,7 @@ class AuthService {
     async login({ body }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                email: Joi.string().trim().email().required().label("email"),
+                email: Joi.string().trim().email().lowercase().required().label("email"),
                 password: Joi.string().required().label("password"),
             }),
         })
@@ -73,7 +78,7 @@ class AuthService {
         const token = await TokenService.generateAuthTokens({ _id: user._id, role: user.role, email: user.email });
 
         // Remove password from response
-        delete user.password;
+        user.password = undefined;
 
         return { user, token };
     }
@@ -94,12 +99,12 @@ class AuthService {
 
         // Check if user exists
         const user = await UserModel.findOne({ _id: data.body.userId });
-        if (!user) throw new CustomError("user does not exist", 400);
+        if (!user) throw new CustomError("invalid user id", 400);
 
         // Check if email is already verified
         if (user.emailVerified) throw new CustomError("email is already verified", 400);
 
-        const isValidToken = await TokenService.verifyToken({ token: data.body.verificationToken, code: data.body.verificationCode, userId: user._id, tokenType: "email-verification" });
+        const isValidToken = await TokenService.verifyOtpToken({ token: data.body.verificationToken, code: data.body.verificationCode, userId: user._id, tokenType: TOKEN_TYPES.EMAIL_VERIFICATION, deleteIfValidated: true });
         if (!isValidToken) throw new CustomError("invalid or expired token. Kindly request a new verification link", 400);
 
         // Update user
@@ -108,32 +113,28 @@ class AuthService {
         return;
     }
 
-    async requestEmailVerification(userId: string, isNewUser: boolean) {
+    async requestEmailVerification({ body }: Partial<Request>) {
         const { error, value: data } = Joi.object({
-            userId: Joi.required().label("user id"),
-            isNewUser: Joi.boolean().required(),
+            body: Joi.object({
+                userId: Joi.required().label("user id"),
+            }),
         })
             .options({ stripUnknown: true })
-            .validate({ userId, isNewUser });
+            .validate({ body });
         if (error) throw new CustomError(error.message, 400);
 
         // Check if user exists
         const user = await UserModel.findOne({ _id: data.userId });
-        if (!user) throw new CustomError("user does not exist", 400);
+        if (!user) throw new CustomError("invalid user id", 400);
 
         // Check if email is already verified
         if (user.emailVerified) throw new CustomError("email is already verified", 400);
 
         // Create new token
-        const verificationToken = await TokenService.generateToken({ userId: user._id, tokenType: "email-verification" });
+        const verificationToken = await TokenService.generateOtpToken({ userId: user._id, tokenType: "email-verification" });
 
-        if (isNewUser) {
-            // send welcome user email
-            await mailService.sendWelcomeUserEmail({ user, verificationToken: verificationToken.token });
-        } else {
-            // send new verification link email
-            await mailService.sendVerificationLinkEmail({ user, verificationToken: verificationToken.token });
-        }
+        // send new verification link email
+        await mailService.sendVerificationLinkEmail({ user: { _id: user._id, firstName: user.firstName, email: user.email }, verificationToken: verificationToken.token });
 
         return;
     }
@@ -141,7 +142,7 @@ class AuthService {
     async requestPasswordReset({ body }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                email: Joi.string().trim().email().required().label("email"),
+                email: Joi.string().trim().email().lowercase().required().label("email"),
             }),
         })
             .options({ stripUnknown: true })
@@ -153,10 +154,58 @@ class AuthService {
         // Don't throw error if user doesn't exist, just return null - so hackers don't exploit this route to know emails on the platform
         if (!user) return;
 
-        const resetToken = await TokenService.generateToken({ userId: user._id, tokenType: "password-reset" });
+        const resetToken = await TokenService.generateOtpToken({ userId: user._id, tokenType: TOKEN_TYPES.PASSWORD_RESET });
 
         // send password reset email
-        await mailService.sendPasswordResetEmail({ user, resetToken: resetToken.token });
+        await mailService.sendPasswordResetLinkEmail({ user: { _id: user._id, firstName: user.firstName, email: user.email }, resetToken: resetToken.token });
+
+        return {
+            userId: user._id,
+        };
+    }
+
+    async confirmPasswordResetToken({ body }: Partial<Request>) {
+        const { error, value: data } = Joi.object({
+            body: Joi.object({
+                userId: Joi.string().required().label("user id"),
+                resetToken: Joi.string().required().label("reset token"),
+            }),
+        })
+            .options({ stripUnknown: true })
+            .validate({ body });
+        if (error) throw new CustomError(error.message, 400);
+
+        if (isValidObjectId(data.body.userId) !== true) throw new CustomError("invalid user id", 400);
+
+        // Check if user exists
+        const user = await TokenService.verifyOtpToken({ code: data.body.resetToken, userId: data.body.userId, tokenType: TOKEN_TYPES.PASSWORD_RESET, deleteIfValidated: false });
+        if (!user) throw new CustomError("invalid or expired token. Kindly make a new password reset request", 400);
+
+        return true;
+    }
+
+    async resetPassword({ body }: Partial<Request>) {
+        const { error, value: data } = Joi.object({
+            body: Joi.object({
+                userId: Joi.string().required().label("user id"),
+                resetToken: Joi.string().required().label("reset token"),
+                newPassword: Joi.string().required().label("new password"),
+            }),
+        })
+            .options({ stripUnknown: true })
+            .validate({ body });
+        if (error) throw new CustomError(error.message, 400);
+
+        // Check if user exists
+        const user = await UserModel.findOne({ _id: data.body.userId });
+        if (!user) throw new CustomError("invalid user id", 400);
+
+        const isValidToken = await TokenService.verifyOtpToken({ token: data.body.resetToken, userId: user._id, tokenType: TOKEN_TYPES.PASSWORD_RESET, deleteIfValidated: true });
+        if (!isValidToken) throw new CustomError("invalid or expired token. Kindly make a new password reset request", 400);
+
+        // Hash new password and update user
+        const passwordHash = await bcryptjs.hash(data.body.newPassword, CONFIGS.BCRYPT_SALT);
+        await UserModel.updateOne({ _id: user._id }, { $set: { password: passwordHash } });
 
         return;
     }
@@ -180,12 +229,14 @@ class AuthService {
     async logout({ body }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                refreshToken: Joi.string().allow(null).optional().label("refresh token"),
+                refreshToken: Joi.string().allow("", null).optional().label("refresh token"),
             }),
         })
             .options({ stripUnknown: true })
             .validate({ body });
         if (error) throw new CustomError(error.message, 400);
+
+        if (!data.body.refreshToken) return true;
 
         // revoke refresh token
         await TokenService.revokeRefreshToken(data.body.refreshToken).catch((error) => {
@@ -193,32 +244,6 @@ class AuthService {
         });
 
         return true;
-    }
-
-    async resetPassword({ body }: Partial<Request>) {
-        const { error, value: data } = Joi.object({
-            body: Joi.object({
-                userId: Joi.string().required().label("user id"),
-                resetToken: Joi.string().required().label("reset token"),
-                newPassword: Joi.string().required().label("new password"),
-            }),
-        })
-            .options({ stripUnknown: true })
-            .validate({ body });
-        if (error) throw new CustomError(error.message, 400);
-
-        // Check if user exists
-        const user = await UserModel.findOne({ _id: data.body.userId });
-        if (!user) throw new CustomError("user does not exist", 400);
-
-        const isValidToken = await TokenService.verifyToken({ token: data.body.resetToken, userId: user._id, tokenType: "password-reset" });
-        if (!isValidToken) throw new CustomError("invalid or expired token. Kindly make a new password reset request", 400);
-
-        // Hash new password and update user
-        const passwordHash = await bcryptjs.hash(data.body.newPassword, CONFIGS.BCRYPT_SALT);
-        await UserModel.updateOne({ _id: user._id }, { $set: { password: passwordHash } });
-
-        return;
     }
 }
 

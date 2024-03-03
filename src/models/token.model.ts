@@ -1,10 +1,16 @@
 import mongoose from "mongoose";
 import { CONFIGS } from "@/configs";
 
+export const TOKEN_TYPES = {
+    REFRESH_TOKEN: "refresh-token",
+    PASSWORD_RESET: "password-reset",
+    EMAIL_VERIFICATION: "email-verification",
+} as const;
+
 export interface IToken extends mongoose.Document {
     code: string | null;
     token: string | null;
-    type: "email-verification" | "password-reset" | "refresh-token";
+    type: (typeof TOKEN_TYPES)[keyof typeof TOKEN_TYPES];
     userId: mongoose.Types.ObjectId;
     expiresAt: Date;
 }
@@ -26,13 +32,13 @@ const tokenSchema: mongoose.Schema<IToken> = new mongoose.Schema<IToken>(
         type: {
             type: String,
             required: true,
-            enum: ["email-verification", "password-reset", "refresh-token"],
+            enum: Object.values(TOKEN_TYPES),
         },
 
         userId: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
-            ref: "user",
+            ref: "users",
         },
 
         expiresAt: {
@@ -55,4 +61,4 @@ mongoose.Query.prototype.setOptions = function () {
     return this;
 };
 
-export default mongoose.model<IToken>("token", tokenSchema);
+export default mongoose.model<IToken>("tokens", tokenSchema);

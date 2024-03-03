@@ -11,6 +11,10 @@ const configSchema = new mongoose.Schema<IConfig>(
             type: String,
             required: true,
             unique: true,
+            collation: {
+                locale: "en",
+                strength: 2,
+            },
         },
         value: {
             type: mongoose.Schema.Types.Mixed,
@@ -30,4 +34,4 @@ mongoose.Query.prototype.setOptions = function () {
     return this;
 };
 
-export default mongoose.model<IConfig>("config", configSchema);
+export default mongoose.model<IConfig>("configs", configSchema);

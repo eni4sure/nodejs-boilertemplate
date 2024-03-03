@@ -1,11 +1,12 @@
-import { CONFIGS } from "@/configs";
-import mailer from "@/libraries/mailer";
-import { IUser } from "@/models/user.model";
 import { render } from "@react-email/components";
 
-import WelcomeUserEmail from "@/email-templates/welcome-user";
-import VerificationLinkEmail from "@/email-templates/verification-link";
-import PasswordResetEmail from "@/email-templates/password-reset";
+import { CONFIGS } from "@/configs";
+import { IUser } from "@/models/user.model";
+import nodemailerInstance from "@/libraries/nodemailer";
+
+import WelcomeUserEmail from "@/email-templates/v1/welcome-user-email";
+import VerificationLinkEmail from "@/email-templates/v1/verification-link-email";
+import PasswordResetLinkEmail from "@/email-templates/v1/password-reset-link-email";
 
 class MailService {
     async sendWelcomeUserEmail(context: { user: Pick<IUser, "_id" | "firstName" | "email">; verificationToken: string }) {
@@ -14,7 +15,7 @@ class MailService {
             verificationLink: `${CONFIGS.URL.AUTH_BASE_URL}/auth/verify-email?verificationToken=${context.verificationToken}&userId=${context.user._id}`,
         };
 
-        return await mailer.sendMail({
+        return await nodemailerInstance.sendMail({
             to: context.user.email,
             subject: "Welcome to nodejs-boilertemplate",
             text: render(WelcomeUserEmail(emailProp), { plainText: true }),
@@ -28,7 +29,7 @@ class MailService {
             verificationLink: `${CONFIGS.URL.AUTH_BASE_URL}/auth/verify-email?verificationToken=${context.verificationToken}&userId=${context.user._id}`,
         };
 
-        return await mailer.sendMail({
+        return await nodemailerInstance.sendMail({
             to: context.user.email,
             subject: "Verify your email address",
             text: render(VerificationLinkEmail(emailProp), { plainText: true }),
@@ -36,22 +37,22 @@ class MailService {
         });
     }
 
-    async sendPasswordResetEmail(context: { user: Pick<IUser, "_id" | "firstName" | "email">; resetToken: string }) {
+    async sendPasswordResetLinkEmail(context: { user: Pick<IUser, "_id" | "firstName" | "email">; resetToken: string }) {
         const emailProp = {
             firstName: context.user.firstName,
             resetLink: `${CONFIGS.URL.AUTH_BASE_URL}/auth/reset-password?resetToken=${context.resetToken}&userId=${context.user._id}`,
         };
 
-        return await mailer.sendMail({
+        return await nodemailerInstance.sendMail({
             to: context.user.email,
             subject: "Reset your password",
-            text: render(PasswordResetEmail(emailProp), { plainText: true }),
-            html: render(PasswordResetEmail(emailProp)),
+            text: render(PasswordResetLinkEmail(emailProp), { plainText: true }),
+            html: render(PasswordResetLinkEmail(emailProp)),
         });
     }
 }
 
-// For testing purposes, uncomment code below and run `yarn start`
+// // For testing purposes, uncomment code below and run `yarn start`
 // new MailService().sendWelcomeUserEmail({
 //     user: {
 //         _id: "5f9b3b1b9b3b1b9b3b1b9b3b",

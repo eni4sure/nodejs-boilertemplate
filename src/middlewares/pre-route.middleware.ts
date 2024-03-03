@@ -2,9 +2,10 @@ import cors from "cors";
 import path from "path";
 import helmet from "helmet";
 import morgan from "morgan";
-import { CONFIGS } from "@/configs";
 import * as Sentry from "@sentry/node";
 import express, { Express } from "express";
+import { CONFIGS, DEPLOYMENT_ENV } from "@/configs";
+import { nodeProfilingIntegration } from "@sentry/profiling-node";
 
 const configurePreRouteMiddleware = (app: Express): Express => {
     // Set Proxy
@@ -13,7 +14,8 @@ const configurePreRouteMiddleware = (app: Express): Express => {
     // Initialize Sentry
     Sentry.init({
         dsn: CONFIGS.SENTRY.DSN,
-        environment: process.env.NODE_ENV,
+        environment: DEPLOYMENT_ENV,
+        release: CONFIGS.SENTRY.RELEASE,
 
         integrations: [
             // enable HTTP calls tracing
@@ -24,10 +26,13 @@ const configurePreRouteMiddleware = (app: Express): Express => {
 
             // Automatically instrument Node.js libraries and frameworks
             ...Sentry.autoDiscoverNodePerformanceMonitoringIntegrations(),
+
+            // enable profiling
+            nodeProfilingIntegration(),
         ],
 
-        // Set tracesSampleRate to 1.0 to capture 100%
-        tracesSampleRate: 0.4,
+        tracesSampleRate: 0.4, // % of transactions that will be sampled
+        profilesSampleRate: 0.4, // % of transactions that will be profiled
     });
 
     // Sentry request handler of transactions for performance monitoring.

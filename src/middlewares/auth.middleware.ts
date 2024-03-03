@@ -12,7 +12,7 @@ import CustomError from "@/utilities/custom-error";
  * @param  {any[]} roles List of roles allowed to access the route
  */
 function auth(roles: string[] = []) {
-    roles = roles.length > 0 ? roles : CONFIGS.ROLES.USER;
+    roles = roles.length > 0 ? roles : CONFIGS.APP_ROLES.USER;
 
     return async (req: Request, _res: Response, next: NextFunction) => {
         if (!req.headers.authorization) throw new CustomError("unauthorized access: token not found", 401);
@@ -38,7 +38,7 @@ function auth(roles: string[] = []) {
         // If role is not authorized to access route
         if (!roles.includes(user.role)) throw new CustomError("-middleware/user-not-authorized", 401);
 
-        // Log lastActive for every request
+        // log lastActive for user request
         await User.findByIdAndUpdate(user._id, { lastActive: new Date() });
 
         // Set user context for Sentry

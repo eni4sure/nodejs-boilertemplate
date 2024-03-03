@@ -1,9 +1,13 @@
+// set timezone
+process.env.TZ = "Africa/Lagos";
+
 import "express-async-errors";
 import express, { Express } from "express";
 
 import routes from "@/routes";
-import mailer from "@/libraries/mailer";
-import { connectMongoDB } from "@/libraries/mongo";
+import { redisClient } from "@/libraries/redis";
+import { connectMongoDB } from "@/libraries/mongodb";
+import nodemailerInstance from "@/libraries/nodemailer";
 import { configureErrorMiddleware } from "@/middlewares/error.middleware";
 import { configurePreRouteMiddleware } from "@/middlewares/pre-route.middleware";
 
@@ -25,13 +29,16 @@ const PORT: number | string = process.env.PORT || 4000;
 
 // Listen to server port
 app.listen(PORT, async () => {
+    // verify mailer connection
+    await nodemailerInstance.verifyConnection();
+
+    // Initialize Redis connection
+    await redisClient.connect();
+
     // Initialize MongoDB connection
     await connectMongoDB();
 
-    // Initialize mailer connection
-    await mailer.verifyConnection();
-
-    console.log(`:::> Server listening on port ${PORT} @ http://localhost:${PORT}`);
+    console.log(`:::> Server listening on port ${PORT} @ http://localhost:${PORT} in ${String(process.env.NODE_ENV)} mode <:::`);
 });
 
 // On server error

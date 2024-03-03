@@ -20,13 +20,18 @@ class AuthController {
     }
 
     async requestEmailVerification(req: Request, res: Response) {
-        const result = await AuthService.requestEmailVerification(req.body.userId, false);
+        const result = await AuthService.requestEmailVerification({ ...req });
         res.status(200).send(response("email verification requested", result));
     }
 
     async requestPasswordReset(req: Request, res: Response) {
         const result = await AuthService.requestPasswordReset({ ...req });
         res.status(200).send(response("password reset requested", result));
+    }
+
+    async confirmPasswordResetToken(req: Request, res: Response) {
+        const result = await AuthService.confirmPasswordResetToken({ ...req });
+        res.status(200).send(response("password reset token confirmed", result));
     }
 
     async resetPassword(req: Request, res: Response) {

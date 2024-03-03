@@ -36,16 +36,16 @@ class UserService {
 
         // Check if user exists
         const user = await UserModel.findOneAndUpdate({ _id: data.$currentUser._id }, { $set: data.body }, { new: true });
-        if (!user) throw new CustomError("user not found", 404);
+        if (!user) throw new CustomError("invalid user id", 404);
 
-        return user;
+        return data.body;
     }
 
     async updatePassword({ body, $currentUser }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                currentPassword: Joi.string().required(),
-                newPassword: Joi.string().required(),
+                currentPassword: Joi.string().required().label("current password"),
+                newPassword: Joi.string().required().label("new password"),
             }),
             $currentUser: Joi.object({
                 _id: Joi.required(),
@@ -57,7 +57,7 @@ class UserService {
 
         // Check if user exists
         const user = await UserModel.findOne({ _id: data.$currentUser._id }).select("+password");
-        if (!user) throw new CustomError("user not found", 404);
+        if (!user) throw new CustomError("invalid user id", 404);
 
         // Check if password is correct
         const isPasswordCorrect = await bcryptjs.compare(data.body.currentPassword, user.password || "");

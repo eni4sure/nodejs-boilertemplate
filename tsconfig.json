@@ -20,14 +20,17 @@
    
         /* JavaScript Support */
         "allowJs": true,
-        "checkJs": true,
+        "checkJs": false,
+
         /* Emit */
         "sourceMap": true, // Enable source maps for improved sentry
-        // "sourceRoot": "/", // Set source root to root of project for improved sentry
+        "sourceRoot": "/", // Set source root to root of project for improved sentry
+        "inlineSources": true,
         "declaration": false,
         "declarationMap": false,
         "outDir": "./dist",
         "removeComments": true,
+
         /* Interop Constraints */
         "isolatedModules": true,
         "allowSyntheticDefaultImports": true,

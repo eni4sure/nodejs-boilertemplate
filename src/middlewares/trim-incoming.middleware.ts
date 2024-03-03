@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import trimObjectStrings from "@/utilities/trim-object-strings";
+import { trimObjectStrings } from "@/utilities/helpful-methods";
 
 const trimIncomingRequests = (req: Request, _res: Response, next: NextFunction) => {
     if (req.body) {
