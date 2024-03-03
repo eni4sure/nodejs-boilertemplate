@@ -9,17 +9,17 @@ export default function V1EmailLayout({ preview, children }: LayoutProp) {
     return (
         <Html lang="en">
             <Tailwind config={{ theme: { extend: { colors: {} } }, darkMode: "class" }}>
-                <>
-                    <Head>
-                        <Font
-                            // breaker
-                            fontWeight={400}
-                            fontStyle="normal"
-                            fontFamily="Verdana"
-                            fallbackFontFamily={["Verdana", "Helvetica"]}
-                        />
-                    </Head>
+                <Head>
+                    <Font
+                        // breaker
+                        fontWeight={400}
+                        fontStyle="normal"
+                        fontFamily="Verdana"
+                        fallbackFontFamily={["Verdana", "Helvetica"]}
+                    />
+                </Head>
 
+                <>
                     {preview && <Preview>{preview}</Preview>}
 
                     <Body className="py-8 px-5 md:px-10">
