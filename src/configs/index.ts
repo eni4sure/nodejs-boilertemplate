@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import ms from "ms";
 import dotenv from "dotenv";
-import { version } from "../../package.json";
+import packageInfo from "../../package.json";
 
 dotenv.config();
 
@@ -19,7 +19,7 @@ dotenv.config();
 // 1. Add a new key to the CONFIG_BUILDER object with the environment name.
 // 2. Duplicate the development object and replace the values with the new environment's values.
 
-const APP_VERSION = version;
+const APP_VERSION = packageInfo.version;
 const DEPLOYMENT_ENV = process.env.NODE_ENV || "development";
 
 const GLOBAL_CONSTANTS = {
