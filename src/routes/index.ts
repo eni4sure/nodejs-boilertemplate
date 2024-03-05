@@ -19,8 +19,8 @@ router.get("/", (_req: Request, res: Response) => {
     return res.status(200).json({
         version: APP_VERSION,
         environment: DEPLOYMENT_ENV,
-        serverTimezone: process.env.TZ,
-        serverTime: new Date().toISOString(),
+        server_timezone: process.env.TZ,
+        server_time: new Date().toISOString(),
         message: "Hello world from nodejs-boilertemplate !!",
     });
 });

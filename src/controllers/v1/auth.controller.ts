@@ -29,9 +29,9 @@ class AuthController {
         res.status(200).send(response("password reset requested", result));
     }
 
-    async confirmPasswordResetToken(req: Request, res: Response) {
-        const result = await AuthService.confirmPasswordResetToken({ ...req });
-        res.status(200).send(response("password reset token confirmed", result));
+    async confirmPasswordResetOtp(req: Request, res: Response) {
+        const result = await AuthService.confirmPasswordResetOtp({ ...req });
+        res.status(200).send(response("password reset otp confirmed", result));
     }
 
     async resetPassword(req: Request, res: Response) {

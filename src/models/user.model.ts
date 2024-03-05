@@ -1,25 +1,25 @@
 import mongoose from "mongoose";
 
 export interface IUser extends mongoose.Document {
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     email: string;
     password?: string;
-    emailVerified: boolean;
-    accountDisabled: boolean;
+    email_verified: boolean;
+    account_disabled: boolean;
     role: "user" | "admin";
-    lastActive: Date;
-    createdAt?: Date;
-    updatedAt?: Date;
+    last_active: Date;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 const userSchema: mongoose.Schema<IUser> = new mongoose.Schema<IUser>(
     {
-        firstName: {
+        first_name: {
             type: String,
             required: true,
         },
-        lastName: {
+        last_name: {
             type: String,
             required: true,
         },
@@ -39,12 +39,12 @@ const userSchema: mongoose.Schema<IUser> = new mongoose.Schema<IUser>(
             select: false,
         },
 
-        emailVerified: {
+        email_verified: {
             type: Boolean,
             required: true,
             default: false,
         },
-        accountDisabled: {
+        account_disabled: {
             type: Boolean,
             required: true,
             default: false,
@@ -57,23 +57,18 @@ const userSchema: mongoose.Schema<IUser> = new mongoose.Schema<IUser>(
             default: "user",
         },
 
-        lastActive: {
+        last_active: {
             type: Date,
             required: true,
             default: Date.now,
         },
     },
     {
-        timestamps: true,
+        timestamps: {
+            createdAt: "created_at",
+            updatedAt: "updated_at",
+        },
     }
 );
-
-// set mongoose options to have lean turned on by default | ref: https://itnext.io/performance-tips-for-mongodb-mongoose-190732a5d382
-mongoose.Query.prototype.setOptions = function () {
-    if (this.mongooseOptions().lean == null) {
-        this.mongooseOptions({ lean: true });
-    }
-    return this;
-};
 
 export default mongoose.model<IUser>("users", userSchema);

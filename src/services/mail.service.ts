@@ -9,10 +9,10 @@ import VerificationLinkEmail from "@/email-templates/v1/verification-link-email"
 import PasswordResetLinkEmail from "@/email-templates/v1/password-reset-link-email";
 
 class MailService {
-    async sendWelcomeUserEmail(context: { user: Pick<IUser, "_id" | "firstName" | "email">; verificationToken: string }) {
+    async sendWelcomeUserEmail(context: { user: Pick<IUser, "_id" | "first_name" | "email">; verification_token: string }) {
         const emailProp = {
-            firstName: context.user.firstName,
-            verificationLink: `${CONFIGS.URL.AUTH_BASE_URL}/auth/verify-email?verificationToken=${context.verificationToken}&userId=${context.user._id}`,
+            firstName: context.user.first_name,
+            verificationLink: `${CONFIGS.URL.AUTH_BASE_URL}/auth/verify-email?verification_token=${context.verification_token}&user_id=${context.user._id}`,
         };
 
         return await nodemailerInstance.sendMail({
@@ -23,10 +23,10 @@ class MailService {
         });
     }
 
-    async sendVerificationLinkEmail(context: { user: Pick<IUser, "_id" | "firstName" | "email">; verificationToken: string }) {
+    async sendVerificationLinkEmail(context: { user: Pick<IUser, "_id" | "first_name" | "email">; verification_token: string }) {
         const emailProp = {
-            firstName: context.user.firstName,
-            verificationLink: `${CONFIGS.URL.AUTH_BASE_URL}/auth/verify-email?verificationToken=${context.verificationToken}&userId=${context.user._id}`,
+            firstName: context.user.first_name,
+            verificationLink: `${CONFIGS.URL.AUTH_BASE_URL}/auth/verify-email?verification_token=${context.verification_token}&user_id=${context.user._id}`,
         };
 
         return await nodemailerInstance.sendMail({
@@ -37,10 +37,10 @@ class MailService {
         });
     }
 
-    async sendPasswordResetLinkEmail(context: { user: Pick<IUser, "_id" | "firstName" | "email">; resetToken: string }) {
+    async sendPasswordResetLinkEmail(context: { user: Pick<IUser, "_id" | "first_name" | "email">; resetToken: string }) {
         const emailProp = {
-            firstName: context.user.firstName,
-            resetLink: `${CONFIGS.URL.AUTH_BASE_URL}/auth/reset-password?resetToken=${context.resetToken}&userId=${context.user._id}`,
+            firstName: context.user.first_name,
+            resetLink: `${CONFIGS.URL.AUTH_BASE_URL}/auth/reset-password?resetToken=${context.resetToken}&user_id=${context.user._id}`,
         };
 
         return await nodemailerInstance.sendMail({
@@ -59,7 +59,7 @@ class MailService {
 //         firstName: "John",
 //         email: "", // Add your email here to test
 //     },
-//     verificationToken: "5f9b3b1b9b3b1b9b3b1b9b3b",
+//     verification_token: "5f9b3b1b9b3b1b9b3b1b9b3b",
 // });
 
 export default new MailService();

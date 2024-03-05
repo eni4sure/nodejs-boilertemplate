@@ -30,16 +30,16 @@ function auth(roles: string[] = []) {
         if (!user) throw new CustomError("-middleware/user-not-found", 401);
 
         // user is deactivated
-        if (user.accountDisabled) throw new CustomError("-middleware/user-deactivated", 401);
+        if (user.account_disabled) throw new CustomError("-middleware/user-deactivated", 401);
 
         // If email address is not verified
-        if (!user.emailVerified) throw new CustomError("-middleware/user-email-not-verified", 401);
+        if (!user.email_verified) throw new CustomError("-middleware/user-email-not-verified", 401);
 
         // If role is not authorized to access route
         if (!roles.includes(user.role)) throw new CustomError("-middleware/user-not-authorized", 401);
 
         // log lastActive for user request
-        await User.findByIdAndUpdate(user._id, { lastActive: new Date() });
+        await User.findByIdAndUpdate(user._id, { last_active: new Date() });
 
         // Set user context for Sentry
         Sentry.setUser({ id: user._id.toString(), email: user.email });

@@ -11,8 +11,8 @@ export interface IToken extends mongoose.Document {
     code: string | null;
     token: string | null;
     type: (typeof TOKEN_TYPES)[keyof typeof TOKEN_TYPES];
-    userId: mongoose.Types.ObjectId;
-    expiresAt: Date;
+    user_id: mongoose.Types.ObjectId;
+    expires_at: Date;
 }
 
 const tokenSchema: mongoose.Schema<IToken> = new mongoose.Schema<IToken>(
@@ -35,13 +35,13 @@ const tokenSchema: mongoose.Schema<IToken> = new mongoose.Schema<IToken>(
             enum: Object.values(TOKEN_TYPES),
         },
 
-        userId: {
+        user_id: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: "users",
         },
 
-        expiresAt: {
+        expires_at: {
             type: Date,
             required: true,
             default: Date.now,
@@ -52,13 +52,5 @@ const tokenSchema: mongoose.Schema<IToken> = new mongoose.Schema<IToken>(
         timestamps: false,
     }
 );
-
-// Set mongoose options to have lean turned on by default
-mongoose.Query.prototype.setOptions = function () {
-    if (this.mongooseOptions().lean == null) {
-        this.mongooseOptions({ lean: true });
-    }
-    return this;
-};
 
 export default mongoose.model<IToken>("tokens", tokenSchema);

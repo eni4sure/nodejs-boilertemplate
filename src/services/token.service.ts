@@ -8,7 +8,7 @@ import UserModel, { IUser } from "@/models/user.model";
 import TokenModel, { IToken, TOKEN_TYPES } from "@/models/token.model";
 
 class TokenService {
-    async generateAuthTokens(user: Pick<IUser, "_id" | "role" | "email">) {
+    async generateAuthTokens(user: Pick<IUser, "_id">) {
         // Generate random refresh-token and hash it
         const refreshToken = crypto.randomBytes(32).toString("hex");
 
@@ -16,21 +16,24 @@ class TokenService {
         const hashedRefreshToken = await bcryptjs.hash(refreshToken, CONFIGS.BCRYPT_SALT);
 
         // Save refresh-token in database
-        await new TokenModel({ token: hashedRefreshToken, type: TOKEN_TYPES.REFRESH_TOKEN, userId: user._id, expiresAt: Date.now() + CONFIGS.REFRESH_TOKEN_JWT_EXPIRES_IN }).save();
+        await new TokenModel({ token: hashedRefreshToken, type: TOKEN_TYPES.REFRESH_TOKEN, user_id: user._id, expiresAt: Date.now() + CONFIGS.REFRESH_TOKEN_JWT_EXPIRES_IN }).save();
 
         // Generate access token and refresh-token JWT
-        const accessTokenJWT = JWT.sign({ _id: user._id, role: user.role, email: user.email }, CONFIGS.JWT_SECRET, { expiresIn: CONFIGS.ACCESS_TOKEN_JWT_EXPIRES_IN / 1000 });
+        const accessTokenJWT = JWT.sign({ _id: user._id }, CONFIGS.JWT_SECRET, { expiresIn: CONFIGS.ACCESS_TOKEN_JWT_EXPIRES_IN / 1000 });
         const refreshTokenJWT = JWT.sign({ _id: user._id, refreshToken: refreshToken }, CONFIGS.JWT_SECRET, { expiresIn: CONFIGS.REFRESH_TOKEN_JWT_EXPIRES_IN / 1000 });
 
-        return { accessToken: accessTokenJWT, refreshToken: refreshTokenJWT };
+        return { access_token: accessTokenJWT, refresh_token: refreshTokenJWT };
     }
 
     async refreshAuthTokens(refreshTokenJWT: string) {
         // Decode refresh-token
-        const decodedRefreshToken = JWT.verify(refreshTokenJWT, CONFIGS.JWT_SECRET) as { _id: string; refreshToken: string };
+        const decodedRefreshToken = JWT.verify(refreshTokenJWT, CONFIGS.JWT_SECRET, (err: any, decoded: any) => {
+            if (err) throw new CustomError("-middleware/token-expired", 401);
+            return decoded;
+        }) as unknown as { _id: string; refreshToken: string };
 
         // Find refresh-tokens for user in database
-        const refreshTokens = await TokenModel.find({ userId: decodedRefreshToken._id, type: TOKEN_TYPES.REFRESH_TOKEN });
+        const refreshTokens = await TokenModel.find({ user_id: decodedRefreshToken._id, type: TOKEN_TYPES.REFRESH_TOKEN });
         if (refreshTokens.length === 0) throw new CustomError("-invalid-expired-token", 401);
 
         // Get user from database
@@ -46,7 +49,7 @@ class TokenService {
                 await TokenModel.deleteOne({ _id: singleToken._id });
 
                 // Generate new access token and refresh-token JWT
-                return await this.generateAuthTokens({ _id: user._id, role: user.role, email: user.email });
+                return await this.generateAuthTokens({ _id: user._id });
             }
         }
 
@@ -58,7 +61,7 @@ class TokenService {
         const decodedRefreshToken = JWT.verify(refreshTokenJWT, CONFIGS.JWT_SECRET) as { _id: string; refreshToken: string };
 
         // Find refresh-tokens for user in database
-        const refreshTokens = await TokenModel.find({ userId: decodedRefreshToken._id, type: TOKEN_TYPES.REFRESH_TOKEN });
+        const refreshTokens = await TokenModel.find({ user_id: decodedRefreshToken._id, type: TOKEN_TYPES.REFRESH_TOKEN });
         if (refreshTokens.length === 0) return false;
 
         // for each refresh-token, check if it matches the decoded refresh-token
@@ -76,9 +79,9 @@ class TokenService {
         return false;
     }
 
-    async generateOtpToken({ userId, tokenType }: { userId: string; tokenType: Exclude<IToken["type"], "refresh-token"> }) {
+    async generateOtpToken({ user_id, tokenType }: { user_id: string; tokenType: Exclude<IToken["type"], "refresh-token"> }) {
         // find and delete any existing token of the same type
-        await TokenModel.findOneAndDelete({ userId: userId, type: tokenType });
+        await TokenModel.findOneAndDelete({ user_id: user_id, type: tokenType });
 
         // generate random code and token
         const token = crypto.randomBytes(32).toString("hex");
@@ -89,7 +92,7 @@ class TokenService {
         const hashedToken = await bcryptjs.hash(token, CONFIGS.BCRYPT_SALT);
 
         // save the encrypted code and token in database
-        await new TokenModel({ code: hashedCode, token: hashedToken, type: tokenType, userId: userId, expiresAt: Date.now() + CONFIGS.DEFAULT_DB_TOKEN_EXPIRY_DURATION }).save();
+        await new TokenModel({ code: hashedCode, token: hashedToken, type: tokenType, user_id: user_id, expiresAt: Date.now() + CONFIGS.DEFAULT_DB_TOKEN_EXPIRY_DURATION }).save();
 
         // return the unencrypted code and token
         return { code, token };
@@ -97,7 +100,7 @@ class TokenService {
 
     async verifyOtpToken({ code, token, userId, tokenType, deleteIfValidated }: { code?: string; token?: string; userId: string; tokenType: IToken["type"]; deleteIfValidated: boolean }) {
         // Find token in database
-        const dbToken = await TokenModel.findOne({ userId: userId, type: tokenType });
+        const dbToken = await TokenModel.findOne({ user_id: userId, type: tokenType });
 
         // If no token found, return false
         if (!dbToken) return false;
@@ -111,7 +114,7 @@ class TokenService {
 
         if (deleteIfValidated === true) {
             // If code and token is valid, delete the token
-            await TokenModel.deleteOne({ userId: userId, type: tokenType });
+            await TokenModel.deleteOne({ user_id: userId, type: tokenType });
         }
 
         return true;

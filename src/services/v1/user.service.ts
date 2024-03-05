@@ -23,8 +23,8 @@ class UserService {
     async updateProfile({ body, $currentUser }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                firstName: Joi.string().trim().required().label("first name"),
-                lastName: Joi.string().trim().required().label("last name"),
+                first_name: Joi.string().trim().required().label("first name"),
+                last_name: Joi.string().trim().required().label("last name"),
             }),
             $currentUser: Joi.object({
                 _id: Joi.required(),
@@ -44,8 +44,8 @@ class UserService {
     async updatePassword({ body, $currentUser }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             body: Joi.object({
-                currentPassword: Joi.string().required().label("current password"),
-                newPassword: Joi.string().required().label("new password"),
+                new_password: Joi.string().required().label("new password"),
+                current_password: Joi.string().required().label("current password"),
             }),
             $currentUser: Joi.object({
                 _id: Joi.required(),
@@ -60,11 +60,11 @@ class UserService {
         if (!user) throw new CustomError("invalid user id", 404);
 
         // Check if password is correct
-        const isPasswordCorrect = await bcryptjs.compare(data.body.currentPassword, user.password || "");
+        const isPasswordCorrect = await bcryptjs.compare(data.body.current_password, user.password || "");
         if (!isPasswordCorrect) throw new CustomError("incorrect password", 400);
 
         // Hash new password and update user
-        const passwordHash = await bcryptjs.hash(data.body.newPassword, CONFIGS.BCRYPT_SALT);
+        const passwordHash = await bcryptjs.hash(data.body.new_password, CONFIGS.BCRYPT_SALT);
         await UserModel.updateOne({ _id: user._id }, { $set: { password: passwordHash } });
 
         return;
