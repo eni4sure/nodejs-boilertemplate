@@ -87,9 +87,8 @@ class AuthService {
         const { error, value: data } = Joi.object({
             body: Joi.object({
                 user_id: Joi.string().required().label("user id"),
-                verification_code: Joi.string().trim().label("verification code"), // a code is required if token is not provided
-                verification_token: Joi.string().trim().label("verification token"), // a token is required if code is not provided
-            }).xor("verification_token", "verification_code"),
+                verification_otp: Joi.string().trim().label("verification otp"), // can either be a token or a code
+            }),
         })
             .options({ stripUnknown: true })
             .validate({ body });
@@ -105,8 +104,8 @@ class AuthService {
         const isValidToken = await TokenService.verifyOtpToken({
             userId: user._id,
             deleteIfValidated: true,
-            code: data.body.verification_code,
-            token: data.body.verification_token,
+            code: data.body.verification_otp,
+            token: data.body.verification_otp,
             tokenType: TOKEN_TYPES.EMAIL_VERIFICATION,
         });
         if (!isValidToken) throw new CustomError("invalid or expired token. Kindly request a new verification link", 400);
@@ -138,7 +137,7 @@ class AuthService {
         const verificationOtp = await TokenService.generateOtpToken({ user_id: user._id, tokenType: "email-verification" });
 
         // send new verification link email
-        await mailService.sendVerificationLinkEmail({ user: { _id: user._id, first_name: user.first_name, email: user.email }, verification_token: verificationOtp.token });
+        await mailService.sendVerificationLinkEmail({ user: { _id: user._id, first_name: user.first_name, email: user.email }, verificationToken: verificationOtp.token });
 
         return;
     }
