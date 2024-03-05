@@ -5,7 +5,7 @@ import UserCtrl from "@/controllers/v1/user.controller";
 
 const router: Router = Router();
 
-router.get("/get-current", authGuard(CONFIGS.APP_ROLES.USER), UserCtrl.getCurrentUser);
+router.get("/session", authGuard(CONFIGS.APP_ROLES.USER), UserCtrl.getUserSession);
 
 router.patch("/update-profile", authGuard(CONFIGS.APP_ROLES.USER), UserCtrl.updateProfile);
 

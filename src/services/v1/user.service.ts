@@ -7,7 +7,7 @@ import UserModel from "@/models/user.model";
 import CustomError from "@/utilities/custom-error";
 
 class UserService {
-    async getCurrentUser({ $currentUser }: Partial<Request>) {
+    async getUserSession({ $currentUser }: Partial<Request>) {
         const { error, value: data } = Joi.object({
             $currentUser: Joi.object({
                 _id: Joi.required(),
