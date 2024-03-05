@@ -1,0 +1,17 @@
+meta {
+  name: Request Email Verification
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{API_BASE_URL}}/v1/auth/request-email-verification
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "user_id": "65e78abde5cb57dda79c428a"
+  }
+}

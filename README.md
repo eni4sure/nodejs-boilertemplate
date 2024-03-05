@@ -62,6 +62,21 @@ for database columns & response payloads, use snake_case.
 
 ---
 
+## API Testing Client
+
+Download and install the latest version of Bruno from [here](https://www.usebruno.com/downloads).
+
+After installing:
+- open Bruno
+- click on the `+` button to open a new collection
+- navigate and select the folder `api-client-doc` in the root directory of the project
+
+You should now see the collection in the Bruno app.
+
+PS: _as you make changes (add or delete) the endpoints, the change is persisted to the `api-client-doc` folder_
+
+---
+
 ## Contribution Guide
 
 ### Git Contribution

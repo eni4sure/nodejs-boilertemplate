@@ -1,0 +1,19 @@
+meta {
+  name: Verify Email
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{API_BASE_URL}}/v1/auth/verify-email
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "user_id": "65e78abde5cb57dda79c428a",
+    // "verification_code": "01991" // use code otp
+    "verification_token": "3bb9ad01b170bbed11e32f35c7ef530f330714b068baeb1f2757a121bf425deb" // or use token otp
+  }
+}

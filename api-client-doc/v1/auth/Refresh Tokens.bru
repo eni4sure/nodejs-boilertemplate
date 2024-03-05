@@ -1,0 +1,17 @@
+meta {
+  name: Refresh Tokens
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{API_BASE_URL}}/v1/auth/refresh-tokens
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWU3OGFiZGU1Y2I1N2RkYTc5YzQyOGEiLCJyZWZyZXNoVG9rZW4iOiJhOTgzMjZjNjlkYjQ3ZDQ4NWY3ZmRhMDAwMTBhMjlmNTE2YmMwOWEyMGQ5MDk2M2E4NTA4MDBhNTdiNzYzYjcwIiwiaWF0IjoxNzA5Njc1OTI2LCJleHAiOjE3MTIyNjc5MjZ9.qdwhsh8P76jVRqWxn1SfUOIuLMuBRnrn7ctwz8txp8o"
+  }
+}

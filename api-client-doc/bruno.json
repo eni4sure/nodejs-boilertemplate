@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "nodejs-boilertemplate",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
