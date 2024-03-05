@@ -24,6 +24,44 @@ yarn dev
 
 ---
 
+## Naming Conventions
+
+### Classes and Types
+When naming classes and types, use PascalCase.
+
+```typescript
+class MyClass {
+  // ...
+}
+
+type MyType = {
+  // ...
+};
+```
+
+### Functions and Variables
+When naming functions and variables, use camelCase.
+
+```typescript
+const myFunction = () => {
+  // ...
+};
+
+const myVariable = 0;
+```
+
+### Database Columns or Data In/Out
+for database columns & response payloads, use snake_case.
+
+```json
+{ 
+    "first_name": "John",
+    "last_name": "Doe"
+}
+```
+
+---
+
 ## Contribution Guide
 
 ### Git Contribution
