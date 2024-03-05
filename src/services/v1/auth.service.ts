@@ -71,7 +71,7 @@ class AuthService {
         const validPassword = await bcryptjs.compare(data.body.password, user.password || "");
         if (!validPassword) throw new CustomError("incorrect email or password", 400);
 
-        // check if acount is disabled
+        // check if account is disabled
         if (user.account_disabled === true) throw new CustomError("account has been disabled, if you believe this is a mistake kindly contact support", 409);
 
         // Generate token
@@ -134,7 +134,7 @@ class AuthService {
         if (user.email_verified) throw new CustomError("email is already verified", 400);
 
         // Create new otp (code and token)
-        const verificationOtp = await TokenService.generateOtpToken({ user_id: user._id, tokenType: "email-verification" });
+        const verificationOtp = await TokenService.generateOtpToken({ userId: user._id, tokenType: TOKEN_TYPES.EMAIL_VERIFICATION });
 
         // send new verification link email
         await mailService.sendVerificationLinkEmail({ user: { _id: user._id, first_name: user.first_name, email: user.email }, verificationToken: verificationOtp.token });
@@ -158,7 +158,7 @@ class AuthService {
         if (!user) return;
 
         // Create new otp (code and token)
-        const resetOtp = await TokenService.generateOtpToken({ user_id: user._id, tokenType: TOKEN_TYPES.PASSWORD_RESET });
+        const resetOtp = await TokenService.generateOtpToken({ userId: user._id, tokenType: TOKEN_TYPES.PASSWORD_RESET });
 
         // send password reset email
         await mailService.sendPasswordResetLinkEmail({ user: { _id: user._id, first_name: user.first_name, email: user.email }, resetToken: resetOtp.token });

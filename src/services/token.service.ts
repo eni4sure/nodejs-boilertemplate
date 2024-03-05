@@ -79,9 +79,9 @@ class TokenService {
         return false;
     }
 
-    async generateOtpToken({ user_id, tokenType }: { user_id: string; tokenType: Exclude<IToken["type"], "refresh-token"> }) {
+    async generateOtpToken({ userId, tokenType }: { userId: string; tokenType: Exclude<IToken["type"], "refresh-token"> }) {
         // find and delete any existing token of the same type
-        await TokenModel.findOneAndDelete({ user_id: user_id, type: tokenType });
+        await TokenModel.findOneAndDelete({ user_id: userId, type: tokenType });
 
         // generate random code and token
         const token = crypto.randomBytes(32).toString("hex");
@@ -92,7 +92,7 @@ class TokenService {
         const hashedToken = await bcryptjs.hash(token, CONFIGS.BCRYPT_SALT);
 
         // save the encrypted code and token in database
-        await new TokenModel({ code: hashedCode, token: hashedToken, type: tokenType, user_id: user_id, expiresAt: Date.now() + CONFIGS.DEFAULT_DB_TOKEN_EXPIRY_DURATION }).save();
+        await new TokenModel({ code: hashedCode, token: hashedToken, type: tokenType, user_id: userId, expiresAt: Date.now() + CONFIGS.DEFAULT_DB_TOKEN_EXPIRY_DURATION }).save();
 
         // return the unencrypted code and token
         return { code, token };
