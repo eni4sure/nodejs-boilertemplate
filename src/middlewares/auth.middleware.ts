@@ -39,7 +39,7 @@ function auth(roles: string[] = []) {
         if (!roles.includes(user.role)) throw new CustomError("-middleware/user-not-authorized", 401);
 
         // log lastActive for user request
-        await User.findByIdAndUpdate(user._id, { last_active: new Date() });
+        await User.findOneAndUpdate({ _id: user._id }, { last_active: new Date() });
 
         // Set user context for Sentry
         Sentry.setUser({ id: user._id.toString(), email: user.email });
